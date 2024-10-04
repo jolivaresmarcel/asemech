@@ -315,9 +315,10 @@ return [
         //     'url' => 'admin/blog',
         //     'can' => 'manage-blog',
         // ],
+        ['Eventos' => 'account_settings'],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Admin Eventos',
+            'url' => 'eventos',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
