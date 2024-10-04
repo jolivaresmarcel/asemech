@@ -29,21 +29,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-        
-            'nombre' => ['required', 'string', 'max:50'],
-            'paterno' => ['required', 'string', 'max:50'],
-            'materno' => ['required', 'string', 'max:50'],
-            'rut' => ['required', 'string', 'max:10', 'unique:'.User::class], 
-            'telefono' => ['required', 'integer'],
-            'universidad' => ['required', 'string', 'max:100'],
-            'anio' => ['required', 'integer'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+          $request->validate([
+              'nombre' => ['required', 'string', 'max:50'],
+              'paterno' => ['required', 'string', 'max:50'],
+              'materno' => ['required', 'string', 'max:50'],
+              'rut' => ['required', 'string', 'max:10', 'unique:'.User::class], 
+              'telefono' => ['required', 'integer'],
+              'universidad' => ['required', 'string', 'max:100'],
+              'anio' => ['required', 'integer'],
+              'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+              'password' => ['required', 'confirmed', Rules\Password::defaults()],
+           ]);
 
         $user = User::create([
-            'name' => $request->nombre .' '. $request->paterno,
+            'name' => $request->nombre . '  ' . $request->paterno,
             'nombre' => $request->nombre,
             'paterno' => $request->paterno,
             'materno' => $request->materno,
