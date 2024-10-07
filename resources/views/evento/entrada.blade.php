@@ -8,11 +8,11 @@
 <br />
     <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Evento</span>
+                            <span class="card-title">{{ __('Show') }} Entrada</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary btn-sm" href="{{ route('eventos.index') }}"> {{ __('Back') }}</a>
@@ -32,30 +32,18 @@
                                 <div class="form-group mb-2 mb20">
                                     <strong>Terminos:</strong>
                                     {{ $evento->terminos }}
-                                </div>
+                                </div>                               
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Foto:</strong>
-                                    {{ $evento->foto }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Inicio:</strong>
+                                    <strong>Fecha del evento:</strong>
                                     {{ $evento->inicio }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Termino:</strong>
-                                    {{ $evento->termino }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Cupos:</strong>
-                                    {{ $evento->cupos }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Publicación:</strong>
-                                    {{ $evento->pucbicar }}
-                                </div>
+                                </div>                                
                                 <div class="form-group mb-2 mb20">
                                     <strong>Lugar:</strong>
                                     {{ $evento->lugar }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Valor:</strong>
+                                    {{ $evento->valor }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>Valor:</strong>

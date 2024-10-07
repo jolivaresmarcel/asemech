@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+//use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 class EventoController extends Controller
 {
     /**
@@ -134,4 +135,13 @@ class EventoController extends Controller
         return Redirect::route('eventos.index')
             ->with('success', 'Evento deleted successfully');
     }
+
+    // public function generate_UUID(Request $request)
+    // {
+    //     $uuid = Str::uuid()->toString();
+    //     return $uuid;
+
+
+    // }
+
 }
