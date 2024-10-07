@@ -5,19 +5,24 @@
 @endsection
 
 @section('content')
+<br />
     <section class="content container-fluid">
-        <div class="float-right">
-            <a class="btn btn-primary btn-sm" href="{{ route('entradas-eventos.index') }}"> {{ __('Back') }}</a>
-        </div>
+        
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                        <div class="float-left">
-                            <span class="card-title">Datos de entrada</span>
-                        </div>
+                    
+
+                    <div class="card-body bg-success">
                         
+                     
+                        <div class="form-group mb-3 mb20 text-center bg-error">
+                            LA ENTRADA ES VALIDA 
+                         </div>
+                              
                     </div>
+
+
 
                     
                     <div class="card-body bg-white">
@@ -39,31 +44,8 @@
                                     <strong>Fecha Compra:</strong>
                                     {{ $entradasEvento->fecha_compra }}
                                 </div>
-
-                    </div>
-
-
-
-
-                </div>
-            </div>
-                <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                        <div class="float-left">
-                            <span class="card-title">QR de validación</span>
-                        </div>
-                  
-                    </div>
-
-                    
-                    <div class="card-body bg-white">
-                        
-                             
-
-                                <div class="form-group mb-2 mb20 text-center">
-                                    {!! QrCode::size(150)->generate(Request::root()."/valida/". $entradasEvento->id ) !!}
-                                    {{-- $entradasEvento->fecha_compra --}}
+                                <div class="float-right">                                                                  
+                                    <a class="btn btn-success btn-sm" href="#"> {{ __('Marcar asistencia') }}</a>
                                 </div>
 
                     </div>
@@ -72,6 +54,8 @@
 
 
                 </div>
+            </div>
+                
 
             </div>
         </div>

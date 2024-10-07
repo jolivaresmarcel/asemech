@@ -8,11 +8,17 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="evento_id" class="form-label">{{ __('Evento') }}</label>
-            {{-- <input type="text" name="evento_id" class="form-control @error('evento_id') is-invalid @enderror" value="{{ old('evento_id', $entradasEvento?->evento_id) }}" id="evento_id" placeholder="Evento Id"> --}}
 
-            <select id="evento_id" class="form-control @error('evento_id') is-invalid @enderror" value="{{ old('evento_id', $entradasEvento?->evento_id) }}" placeholder="Evento Id">
-                @foreach ($evento as $e )
-                <option value={{$e->id}}>{{$e->titulo}}</option> 
+            <select name="evento_id" id="evento" class="form-control">
+                <option value="">Selección de eventos</option>
+                
+                @foreach ($evento as $e)
+   
+                                               
+                    <option value="{{ $e->id }}"
+                        {{ old('evento_id') == $e->id ? 'selected' : ($entradasEvento->evento_id == $e->id ? 'selected' : '' )}}>
+                        {{ $e->titulo }}</option>
+                 
                 @endforeach
             </select>
 
@@ -21,7 +27,16 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="user_id" class="form-label">{{ __('User') }}</label>
-            <input type="text" name="user_id" class="form-control @error('user_id') is-invalid @enderror" value="{{ old('user_id', $entradasEvento?->user_id) }}" id="user_id" placeholder="User Id">
+            {{-- <input type="text" name="user_id" class="form-control @error('user_id') is-invalid @enderror" value="{{ old('user_id', $entradasEvento?->user_id) }}" id="user_id" placeholder="User Id"> --}}
+            <select name="user_id" id="user" class="form-control">
+                <option value="">Selección de usuario</option>
+                @foreach ($user as $u)
+                    <option value="{{ $u->id }}"
+                        {{ old('user_id') == $u->id ? 'selected' : ($entradasEvento->user_id == $u->id? 'selected' : '') }}>
+                        {{ $u->name }}</option>
+                @endforeach
+            </select>
+
             {!! $errors->first('user_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">

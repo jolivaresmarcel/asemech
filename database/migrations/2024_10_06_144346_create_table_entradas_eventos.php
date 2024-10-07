@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('entradas_eventos', function (Blueprint $table) {
-            $table->uuid()->primary();           
+            $table->uuid('id')->primary();           
             $table->integer('estado');
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();

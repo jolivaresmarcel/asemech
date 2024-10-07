@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\EntradasEvento;
 use App\Models\Evento;
+use App\Http\Controllers\App;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradasEventoRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EntradasEventoController extends Controller
 {
@@ -31,8 +34,9 @@ class EntradasEventoController extends Controller
     {
         $entradasEvento = new EntradasEvento();
         $evento = Evento::all();
+        $user = User::all();
 
-        return view('entradas-evento.create', compact('entradasEvento', 'evento'));
+        return view('entradas-evento.create', compact('entradasEvento', 'evento', 'user'));
     }
 
     /**
@@ -63,8 +67,10 @@ class EntradasEventoController extends Controller
     {
         $entradasEvento = EntradasEvento::find($id);
         $evento = Evento::all();
+        $user = User::all();
 
-        return view('entradas-evento.edit', compact('entradasEvento','evento'));
+
+        return view('entradas-evento.edit', compact('entradasEvento','evento', 'user'));
     }
 
     /**
@@ -85,4 +91,30 @@ class EntradasEventoController extends Controller
         return Redirect::route('entradas-eventos.index')
             ->with('success', 'EntradasEvento deleted successfully');
     }
+
+    public function ValidaEntrada($id):view
+    {
+         //$entradasEvento = EntradasEvento::find($id);
+
+        if($entradasEvento = EntradasEvento::find($id))
+        return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        else
+        return view('entradas-evento.EntradaNoValida');
+        //return ($entradasEvento);
+    }
+
+    public function download($id)
+    {
+     
+         $entradasEvento = EntradasEvento::find($id);
+
+         $pdf = Pdf::loadView('entradas-evento.download',compact('entradasEvento'));
+         return $pdf->stream('entrada.pdf');
+
+         //return $entradasEvento;
+
+        //return view('entradas-evento.download', compact('entradasEvento'));
+    }
+
+
 }

@@ -37,8 +37,8 @@
                                         <th>No</th>
                                         
 								
-									<th >Evento Id</th>
-									<th >User Id</th>
+									<th >Evento</th>
+									<th >User</th>
 									<th >Fecha Compra</th>
 
                                         <th></th>
@@ -60,8 +60,10 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('entradas-eventos.edit', $entradasEvento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Seguro que desea eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <a class="btn btn-sm btn-secondary " href="{{'download/'.$entradasEvento->id}}">Descargar Entrada</a>
                                                 </form>
+
                                             </td>
                                         </tr>
                                     @endforeach
