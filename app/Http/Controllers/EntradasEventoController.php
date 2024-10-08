@@ -107,11 +107,12 @@ class EntradasEventoController extends Controller
 
     public function download($id)
     {
+        // //$path = getenv('IMAGE_URL')."/img/logo.png";
+        // $png = QrCode::format('png')->merge( .17, true)->size(300)->errorCorrection('H')->generate("dddd");
+        // $png = base64_encode($png);
      
          $entradasEvento = EntradasEvento::find($id);
 
-         
-     
          $pdf = Pdf::loadView('entradas-evento.download',compact('entradasEvento'));
          return $pdf->stream('entrada.pdf');
 
@@ -120,6 +121,19 @@ class EntradasEventoController extends Controller
 
         //return view('entradas-evento.download', compact('entradasEvento'));
     }
-
+    
+    public function generateCustomQRCode()
+    {
+        $image = QrCode::format('png')
+                        ->size(300)
+                        ->color(255, 0, 0)
+                        ->backgroundColor(255, 255, 255)
+                        ->margin(1)
+     // ->merge('/public/path-to-logo.jpg', .3)
+                        ->generate('Customize your QR code content here');
+    
+        return (['image' => $image]);
+    }
+    
 
 }

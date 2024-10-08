@@ -12,8 +12,8 @@ Route::get('/', function () {
 Route::resource('eventos', EventoController::class)->middleware(['auth', 'verified']);
 Route::resource('entradas-eventos', EntradasEventoController::class)->middleware(['auth', 'verified']);
 Route::get('valida/{id?}', [EntradasEventoController::class,'ValidaEntrada'])->middleware(['auth', 'verified']);
-Route::get('download', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
-
+Route::get('download/{id}', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
+Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
