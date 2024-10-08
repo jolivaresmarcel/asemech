@@ -315,8 +315,24 @@ return [
         //     'url' => 'admin/blog',
         //     'can' => 'manage-blog',
         // ],
+        ['header' => 'Menú Principla'],
+        [
+            'text' => 'Eventos',
+            'url' => 'ComprarEventos',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'Entradas',
+            'url' => 'MisEntradas',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'Certificados',
+            'url' => 'MisCertificados',
+            'icon' => 'far fa-fw fa-file',
+        ],
       
-        ['header' => 'AdminEventos'],
+        ['header' => 'Administración'],
         [
             'text' => 'Eventos',
             'url' => 'eventos',

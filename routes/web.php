@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ComprarEventoController;
 use App\Http\Controllers\EntradasEventoController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,10 @@ Route::resource('eventos', EventoController::class)->middleware(['auth', 'verifi
 Route::resource('entradas-eventos', EntradasEventoController::class)->middleware(['auth', 'verified']);
 Route::get('valida/{id?}', [EntradasEventoController::class,'ValidaEntrada'])->middleware(['auth', 'verified']);
 Route::get('download/{id}', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
-Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);
+
+Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['auth', 'verified']);
+//Route::get('comprar', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);
+//Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
