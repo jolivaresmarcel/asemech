@@ -61,11 +61,11 @@
                 
                 <div class="card-body bg-white">
                     
-                    {{QrCode::size(200)->email('hello@example.com')}}     
+                    
                    
                             <div class="form-group mb-2 mb20 text-center">
-                                {!! QrCode::size(150)->generate(Request::root()."/valida/". $entradasEvento->id ) !!}
-                                {{-- $entradasEvento->fecha_compra --}}
+                           
+                  
                             </div>
 
                 </div>

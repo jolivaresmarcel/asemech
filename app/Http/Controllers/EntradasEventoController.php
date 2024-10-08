@@ -12,6 +12,8 @@ use App\Http\Requests\EntradasEventoRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class EntradasEventoController extends Controller
 {
@@ -108,8 +110,11 @@ class EntradasEventoController extends Controller
      
          $entradasEvento = EntradasEvento::find($id);
 
+         
+     
          $pdf = Pdf::loadView('entradas-evento.download',compact('entradasEvento'));
          return $pdf->stream('entrada.pdf');
+
 
          //return $entradasEvento;
 
