@@ -9,6 +9,16 @@
     <br>
 
 
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger m-4">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
+
     @if ($message = Session::get('success'))
     <div class="alert alert-success m-4">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -55,7 +65,7 @@
       <h5 class="card-title">{{ $eventos->titulo }}</h5>
       <p class="card-text">{{ $eventos->descripcion }}</p>
       
-        <a class="btn btn-sm btn-primary " href="{{ route('ComprarEventos.show', $eventos->id) }}"><i class="fa fa-fw fa-eye"></i></a>
+        <a class="btn btn-sm btn-primary " href="{{ route('ComprarEventos.show', $eventos->id) }}"><i class="fa fa-fw fa-eye"></i>Ver detalle</a>
         {{-- <a class="btn btn-sm btn-success" href="{{ route('MisEventos.comprar', $eventos->id) }}"><i class="fa fa-fw fa-edit"></i></a> --}}
             
     

@@ -322,12 +322,12 @@ return [
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => 'Entradas',
+            'text' => 'Mis Entradas',
             'url' => 'MisEntradas',
             'icon' => 'far fa-fw fa-file',
         ],
         [
-            'text' => 'Certificados',
+            'text' => 'Mis Certificados',
             'url' => 'MisCertificados',
             'icon' => 'far fa-fw fa-file',
         ],

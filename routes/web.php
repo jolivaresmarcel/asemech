@@ -16,7 +16,7 @@ Route::get('valida/{id?}', [EntradasEventoController::class,'ValidaEntrada'])->m
 Route::get('download/{id}', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
 
 Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['auth', 'verified']);
-//Route::get('comprar', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);
+Route::get('comprar/{id}/{user_id}', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);
 //Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);
 Route::get('/dashboard', function () {
     return view('dashboard');

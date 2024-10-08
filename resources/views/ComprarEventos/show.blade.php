@@ -7,6 +7,17 @@
 @section('content')
 <br />
     <section class="content container-fluid">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success m-4">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger m-4">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
         <a class="m-2" href="{{ route('ComprarEventos.index') }}">Eventos></a>{{$evento->titulo}}
         <div class="row mt-2">
             <div class="col-md-12">
@@ -14,12 +25,10 @@
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title"><h1>{{ strtoupper($evento->titulo) }}</h1></span>
-                        </div>
-                        <div class="float-right">
-                           
-                        </div>
+                        </div>                                              
                     </div>
-                    <div class="row ml-0 mr-0">                        <div class="card-body bg-white col-md-6">
+                    <div class="row ml-0 mr-0">                       
+                         <div class="card-body bg-white col-md-6">
                             <img width="100%" src="/{{ $evento->foto }}" />
                         </div>
                         <div class="card-body bg-white col-md-6">
@@ -66,6 +75,11 @@
             <strong>Términos y condiciones:</strong>
             <br />
             {{ $evento->terminos }}
+        </div>
+        <div class="float-right">
+            @if($entradasevento->count()==0)
+            <a class="btn btn-success" href="/comprar/{{$evento->id}}/{{Auth::user()->id}}">Comprar entrada</a>
+            @endif
         </div>
     </section>
 @endsection
