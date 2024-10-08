@@ -11,34 +11,26 @@
     <div style="text-align:right">
         <img width="30%" src="vendor/adminlte/dist/img/logoAsemech.png"/>
     </div>
-    <div style="text-align: center; font: arial;">
-        
-      <h1>  {{ $entradasEvento->evento->titulo }} </h1>
-    
-
-
-   <table style="width: 70%">
+   <table style="margin:10px; margin-left: 120px; width: 100%;">
     <tr>
         <td style="width: 20%"><img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(Request::root()."/valida/". $entradasEvento->id ) ) !!}" /></td>
-        <td style="vertical-align: text-top">
-            
+        <td style="padding:20px; text-top;">
+             <strong> {{ strtoupper($entradasEvento->evento->titulo) }} </strong>
             <div class="form-group mb-3 mb20">
-                <strong>Nombre:</strong>
-                {{ $entradasEvento->user->nombre .' '. $entradasEvento->user->paterno }}
+                <strong>NOMBRE:</strong>
+                {{ strtoupper($entradasEvento->user->nombre .' '. $entradasEvento->user->paterno) }}
             </div>
             <div class="form-group mb-3 mb20">
-                <strong>Rut:</strong>
+                <strong>RUT:</strong>
                 {{ $entradasEvento->user->rut }}
             </div>
             <div class="form-group mb-3 mb20">
-                <strong>Fecha Compra:</strong>
-                {{ $entradasEvento->fecha_compra }}
-                
-               
+                <strong>FECHA:</strong>
+                {{ $entradasEvento->evento->inicio }}
             </div>
             <div class="form-group mb-3 mb20">
-                <strong>Lugar:</strong>
-                {{ $entradasEvento->lugar }}
+                <strong>LUGAR DEL EVENTO:</strong>
+                {{ strtoupper($entradasEvento->evento->lugar) }}
                 
                
             </div>
@@ -47,8 +39,8 @@
        
     </tr>
    </table>
-</div>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
