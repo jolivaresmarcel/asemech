@@ -77,9 +77,9 @@
             {{ $evento->terminos }}
         </div>
         <div class="float-right">
-            @if($entradasevento->count()==0)
+            {{-- @if($entradasevento->count()==0) --}}
             <a class="btn btn-success" href="/comprar/{{$evento->id}}/{{Auth::user()->id}}">Comprar entrada</a>
-            @endif
+            {{-- @endif --}}
         </div>
     </section>
 @endsection
