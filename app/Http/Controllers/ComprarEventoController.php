@@ -44,28 +44,59 @@ class ComprarEventoController extends Controller
 
     public function comprar($id,$user_id) 
     {
-        $evento = Evento::find($id);
-        $user = User::find($user_id);
-        $entradasevento = EntradasEvento::where('evento_id', $evento->id)
-        ->where('user_id', $user_id)->get();
+    //     $evento = Evento::find($id);
+    //     $user = User::find($user_id);
+    //     $entradasevento = EntradasEvento::where('evento_id', $evento->id)
+    //     ->where('user_id', $user_id)->get();
 
-       if($entradasevento->count()>0 )
-        {
-            return Redirect::route('ComprarEventos.index')->with('error', 'Usted ya cuenta con una entrada.');
-        }
-       else{
-        EntradasEvento::create([
-            'estado'=>1, 
-            'evento_id' => $evento->id, 
-            'user_id' => $user->id, 
-            'fecha_compra' => now()->format('Y-m-d')
+    //    if($entradasevento->count()>0 )
+    //     {
+    //         return Redirect::route('ComprarEventos.index')->with('error', 'Usted ya cuenta con una entrada.');
+    //     }
+    //    else{
+    //     EntradasEvento::create([
+    //         'estado'=>1, 
+    //         'evento_id' => $evento->id, 
+    //         'user_id' => $user->id, 
+    //         'fecha_compra' => now()->format('Y-m-d')
+    //     ]);
+    //     return Redirect::route('ComprarEventos.index')->with('success', 'Entrada comprada.');
+
+/**
+ * Requires libcurl
+ */
+
+        $curl = curl_init();
+
+        $payload = array(
+        "amount" => 1000,
+        "currency" => "CLP",
+        "subject" => "Cobro de prueba"
+        );
+        
+        curl_setopt_array($curl, [
+        CURLOPT_HTTPHEADER => [
+            "Content-Type: application/json",
+            "x-api-key: 41914691-abaf-448c-810c-d2c0ae13d19e"
+        ],
+        CURLOPT_POSTFIELDS => json_encode($payload),
+        CURLOPT_URL => "https://payment-api.khipu.com/v3/payments",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => "POST",
         ]);
-        return Redirect::route('ComprarEventos.index')->with('success', 'Entrada comprada.');
-
-       }
-       
+        
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($error) {
+        echo "cURL Error #:" . $error;
+        } else {
+        echo $response;
+        }
    
-//        return ($evento.'\n '. $user_id);
+       return ($response."Error : ".$error);
     }
    
 
