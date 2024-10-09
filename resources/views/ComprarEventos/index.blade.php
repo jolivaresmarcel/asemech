@@ -65,9 +65,9 @@
       <h5 class="card-title">{{ $eventos->titulo }}</h5>
       <p class="card-text">{{ $eventos->descripcion }}</p>
       
-        <a class="btn btn-sm btn-primary " href="{{ route('ComprarEventos.show', $eventos->id) }}"><i class="fa fa-fw fa-eye"></i>Ver detalle</a>
+       <div class="text-right"> <a class="btn btn-sm btn-primary " href="{{ route('ComprarEventos.show', $eventos->id) }}">Ver detalle</a>
         {{-- <a class="btn btn-sm btn-success" href="{{ route('MisEventos.comprar', $eventos->id) }}"><i class="fa fa-fw fa-edit"></i></a> --}}
-            
+       </div>  
     
     </div>
   </div>

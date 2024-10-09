@@ -2,41 +2,46 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EntradasEvento
+ * Class Asistencia
  *
  * @property $id
- * @property $estado
+ * @property $entrada_id
  * @property $evento_id
  * @property $user_id
- * @property $fecha_compra
  * @property $created_at
  * @property $updated_at
  *
+ * @property EntradasEvento $entradasEvento
  * @property Evento $evento
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class EntradasEvento extends Model
+class Asistencia extends Model
 {
-    use HasUuids;
-    
+    use HasUuids;   
     protected $perPage = 20;
     protected $keyType = 'string';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['estado', 'evento_id', 'user_id', 'fecha_compra','validada'];
+    protected $fillable = ['entrada_id', 'evento_id', 'user_id'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entradasEvento()
+    {
+        return $this->belongsTo(\App\Models\EntradasEvento::class, 'entrada_id', 'id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

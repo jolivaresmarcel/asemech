@@ -46,6 +46,7 @@ class EntradasEventoController extends Controller
      */
     public function store(EntradasEventoRequest $request): RedirectResponse
     {
+       
         EntradasEvento::create($request->validated());
 
         return Redirect::route('entradas-eventos.index')
@@ -102,6 +103,29 @@ class EntradasEventoController extends Controller
         return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
         else
         return view('entradas-evento.EntradaNoValida');
+        //return ($entradasEvento);
+    }
+
+    public function RegistraAsistencia($id):View
+    {
+        $entradasEvento=EntradasEvento::find($id);
+        $entradasEvento->validada=0;
+        $entradasEvento->update([
+            'id'=>$entradasEvento->id,
+            'evento_id'=>$entradasEvento->evento_id, 
+            'user_id'=>$entradasEvento->user_id, 
+            'fecha_compra'=>$entradasEvento->fecha_compra,
+            'validada'=>1
+        ]);
+
+        return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        
+         //$entradasEvento = EntradasEvento::find($id);
+
+        // if($entradasEvento = EntradasEvento::find($id))
+        // return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        // else
+        // return view('entradas-evento.EntradaNoValida');
         //return ($entradasEvento);
     }
 

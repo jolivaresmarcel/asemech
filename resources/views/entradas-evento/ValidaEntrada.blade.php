@@ -8,6 +8,26 @@
 <br />
     <section class="content container-fluid">
         
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger m-4">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            <p>{{ $message }}</p>
+        </div>
+        @endif
+
+
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success m-4">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <p>{{ $message }}</p>
+       
+      </div>
+    </div>
+@endif
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -44,9 +64,15 @@
                                     <strong>Fecha Compra:</strong>
                                     {{ $entradasEvento->fecha_compra }}
                                 </div>
+                                @if($entradasEvento->validada==1)
                                 <div class="float-right">                                                                  
-                                    <a class="btn btn-success btn-sm" href="#"> {{ __('Marcar asistencia') }}</a>
+                                    <a class="btn btn-danger btn-sm" href="#"> {{ __('Asistencia registrada') }}</a>
                                 </div>
+                                @else
+                                <div class="float-right">                                                                  
+                                    <a class="btn btn-success btn-sm" href="/RegistraAsistencia/{{$entradasEvento->id}}"> {{ __('Marcar asistencia') }}</a>
+                                </div>
+                                @endif
 
                     </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Entradas Eventos
+    Asistencias
 @endsection
 
 @section('content')
@@ -13,10 +13,14 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Mis entradas') }}
+                                {{ __('Asistencias') }}
                             </span>
 
-                            
+                             <div class="float-right">
+                                <a href="{{ route('asistencias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
+                              </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -32,28 +36,30 @@
                                     <tr>
                                         <th>No</th>
                                         
-								
-									<th >Evento</th>
-									<th >User</th>
-									<th >Fecha Compra</th>
+									<th >Entrada Id</th>
+									<th >Evento Id</th>
+									<th >User Id</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($entradasEventos as $entradasEvento)
+                                    @foreach ($asistencias as $asistencia)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										
-										<td >{{ $entradasEvento->evento->titulo }}</td>
-										<td >{{ $entradasEvento->user->name }}</td>
-										<td >{{ $entradasEvento->fecha_compra }}</td>
+										<td >{{ $asistencia->entrada_id }}</td>
+										<td >{{ $asistencia->evento_id }}</td>
+										<td >{{ $asistencia->user_id }}</td>
 
                                             <td>
-                                                   <a class="btn btn-sm btn-secondary " href="{{'download/'.$entradasEvento->id}}">Descargar Entrada</a>
-
-
+                                                <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('asistencias.show', $asistencia->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('asistencias.edit', $asistencia->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -62,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $entradasEventos->withQueryString()->links() !!}
+                {!! $asistencias->withQueryString()->links() !!}
             </div>
         </div>
     </div>
