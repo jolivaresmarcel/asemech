@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use App\Models\User;
+use App\Models\Transaccione;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EntradasEvento;
 use Illuminate\Http\RedirectResponse;
@@ -44,8 +45,20 @@ class ComprarEventoController extends Controller
 
     public function comprar($id,$user_id) 
     {
-    //     $evento = Evento::find($id);
-    //     $user = User::find($user_id);
+         $evento = Evento::find($id);
+         $user = User::find($user_id);
+
+
+
+      $transaccion=Transaccione::create([
+            'payment_id'=>'1', 
+            'evento_id' => $evento->id, 
+            'user_id' => $user->id, 
+            'status'=>'pending', 
+            'status_detail'=>'pending']);
+           
+
+
     //     $entradasevento = EntradasEvento::where('evento_id', $evento->id)
     //     ->where('user_id', $user_id)->get();
 
@@ -71,7 +84,8 @@ class ComprarEventoController extends Controller
         $payload = array(
         "amount" => 1000,
         "currency" => "CLP",
-        "subject" => "Cobro de prueba"
+        "subject" => "Cobro de prueba",
+        "return_url"=>"http://asemech-dashboard.test/transacciones/".$transaccion->id
         );
         
         curl_setopt_array($curl, [
@@ -94,8 +108,21 @@ class ComprarEventoController extends Controller
         echo "cURL Error #:" . $error;
         } else {
         echo $response;
+
+        $json = json_decode($response);
+
+        Transaccione::where('id',$transaccion->id)->update([
+            'payment_id'=>$json->payment_id, 
+            'evento_id' => $evento->id, 
+            'user_id' => $user->id, 
+            'status'=>'pending', 
+            'status_detail'=>'pending', 
+            'create_payment'=>$response]);
+
+            return Redirect($json->payment_url);
         }
-   
+
+       
        return ($response."Error : ".$error);
     }
    

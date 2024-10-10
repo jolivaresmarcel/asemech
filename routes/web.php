@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ComprarEventoController;
+use App\Http\Controllers\TransaccioneController;
 use App\Http\Controllers\EntradasEventoController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\MisEntradasController;
@@ -21,6 +22,7 @@ Route::resource('asistencias', AsistenciaController::class);
 Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['auth', 'verified']);
 Route::resource('MisEntradas', MisEntradasController::class)->middleware(['auth', 'verified']);
 Route::get('DownloadEntrada/{id}', [EntradasEventoController::class,'DownloadEntrada'])->middleware(['auth', 'verified']);
+Route::resource('transacciones', TransaccioneController::class)->middleware(['auth', 'verified']);
 
 Route::get('comprar/{id}/{user_id}', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);
 //Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);
