@@ -53,66 +53,63 @@ class TransaccioneController extends Controller
     public function show($id): RedirectResponse
     {
         $transaccione = Transaccione::find($id);
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-        CURLOPT_HTTPHEADER => [
-            "x-api-key: 41914691-abaf-448c-810c-d2c0ae13d19e"
-        ],
-        CURLOPT_URL => "https://payment-api.khipu.com/v3/payments/" . $transaccione->payment_id,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        ]);
-
-        $response = curl_exec($curl);
-        $error = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($error) {
-        //echo "cURL Error #:" . $error;
-        } else {
-        //echo $response;
-
-        $json=json_decode($response);
-
-        if($json!=null){
-
-
-        Transaccione::where('id',$transaccione->id)->update([
-            
-            'status'=>$json->status, 
-            'status_detail'=>$json->status_detail, 
-            'get_payment'=>$response]);
+        $entradasevento = EntradasEvento::where('evento_id', $transaccione->evento_id)->where('user_id', $transaccione->user_id)->get();
         
-        $transaccione = Transaccione::find($id);
-        $entradasevento = EntradasEvento::where('evento_id', $transaccione->evento_id)
-         ->where('user_id', $transaccione->user_id)->get();
-
         if($entradasevento->count()>0 )
-         {
-             return Redirect::route('MisEntradas.index')->with('error', 'Usted ya cuenta con una entrada.');
-         }
-        else{
-        if($transaccione->status='normal')
         {
-            EntradasEvento::create([
-                        'estado'=>1, 
-                         'evento_id' => $transaccione->evento_id, 
-                         'user_id' => $transaccione->user_id, 
-                         'fecha_compra' => now()->format('Y-m-d')
-                     ]);
-
-        return Redirect::route('MisEntradas.index')->with('success', 'Entrada comprada.');
-
+            return Redirect::route('MisEntradas.index')->with('error', 'Usted ya cuenta con una entrada.');
         }
-     }
-    }
+        else
+        {
+            $curl = curl_init();
+            curl_setopt_array($curl, [
+            CURLOPT_HTTPHEADER => [
+                "x-api-key: 41914691-abaf-448c-810c-d2c0ae13d19e"
+            ],
+            CURLOPT_URL => "https://payment-api.khipu.com/v3/payments/" . $transaccione->payment_id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            ]);
 
-  
+            $response = curl_exec($curl);
+            $error = curl_error($curl);
 
-    }
+            curl_close($curl);
+
+            if ($error) {
+            //echo "cURL Error #:" . $error;
+            } else 
+            {
+                $json=json_decode($response);
+
+                if($json!=null){
+
+                    Transaccione::where('id',$transaccione->id)->update([
+                        
+                        'status'=>$json->status, 
+                        'status_detail'=>$json->status_detail, 
+                        'get_payment'=>$response]);
+                    
+                    $transaccione = Transaccione::find($id);
+
+                    if($transaccione->status='normal')
+                    {
+                        
+                        EntradasEvento::create([
+                            'estado'=>1, 
+                            'evento_id' => $transaccione->evento_id, 
+                            'user_id' => $transaccione->user_id, 
+                            'fecha_compra' => now()->format('Y-m-d')]);
+
+                        return Redirect::route('MisEntradas.index')->with('success', 'Entrada comprada.');
+                        
+                    }
+                }
+            }
+        
+            return Redirect::route ('transacciones', compact('transaccione'));
+        }
     
-        return Redirect::route ('transacciones', compact('transaccione'));
     }
 
     /**
