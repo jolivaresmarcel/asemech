@@ -78,14 +78,14 @@ class ComprarEventoController extends Controller
 /**
  * Requires libcurl
  */
-
+       
         $curl = curl_init();
 
         $payload = array(
-        "amount" => 1000,
+        "amount" => $evento->valor,
         "currency" => "CLP",
         "subject" => "Cobro de prueba",
-        "return_url"=>"http://asemech-dashboard.test/transacciones/".$transaccion->id
+        "return_url"=>"http://asemech.test/transacciones/".$transaccion->id
         );
         
         curl_setopt_array($curl, [

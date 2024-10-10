@@ -14,14 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transacciones', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id');
             $table->string('payment_id');
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
             $table->string('status');
             $table->string('status_detail');
-            $table->json('create_payment');
-            $table->json(('get_payment'));
+            $table->json('create_payment')->nullable();
+            $table->json('get_payment')->nullable();
             $table->timestamps();
         });
     }
