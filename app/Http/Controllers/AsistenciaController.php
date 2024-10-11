@@ -30,7 +30,7 @@ class AsistenciaController extends Controller
     {
         $asistencia = new Asistencia();
 
-        return view('asistencia.create', compact('asistencia'));
+        return view('admin.asistencia.create', compact('asistencia'));
     }
 
     /**
@@ -55,7 +55,7 @@ class AsistenciaController extends Controller
     {
         $asistencia = Asistencia::find($id);
 
-        return view('asistencia.show', compact('asistencia'));
+        return view('admin.asistencia.show', compact('asistencia'));
     }
 
     /**
@@ -65,7 +65,7 @@ class AsistenciaController extends Controller
     {
         $asistencia = Asistencia::find($id);
 
-        return view('asistencia.edit', compact('asistencia'));
+        return view('admin.asistencia.edit', compact('asistencia'));
     }
 
     /**

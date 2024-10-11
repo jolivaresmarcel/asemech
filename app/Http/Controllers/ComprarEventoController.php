@@ -24,7 +24,7 @@ class ComprarEventoController extends Controller
     {
         $eventos = Evento::paginate();
 
-        return view('ComprarEventos.index', compact('eventos'))
+        return view('Users.ComprarEventos.index', compact('eventos'))
             ->with('i', ($request->input('page', 1) - 1) * $eventos->perPage());
     }
 
@@ -40,7 +40,7 @@ class ComprarEventoController extends Controller
         ->where('user_id', $user->id)->get();
 
 
-        return view('ComprarEventos.show', compact('evento', 'entradasevento'));
+        return view('Users.ComprarEventos.show', compact('evento', 'entradasevento'));
     }
 
     public function comprar($id,$user_id) 

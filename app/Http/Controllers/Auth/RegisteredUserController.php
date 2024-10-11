@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'anio' => $request->anio,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+        ])->assignRole('User');
 
         event(new Registered($user));
 

@@ -18,7 +18,7 @@
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('transaccione.form')
+                            @include('admin.transaccione.form')
 
                         </form>
                     </div>

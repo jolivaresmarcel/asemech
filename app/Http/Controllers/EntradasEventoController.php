@@ -25,7 +25,7 @@ class EntradasEventoController extends Controller
         $entradasEventos = EntradasEvento::paginate();
         $evento = Evento::all();
 
-        return view('entradas-evento.index', compact('entradasEventos', 'evento'))
+        return view('admin.entradas-evento.index', compact('entradasEventos', 'evento'))
             ->with('i', ($request->input('page', 1) - 1) * $entradasEventos->perPage());
     }
 
@@ -38,7 +38,7 @@ class EntradasEventoController extends Controller
         $evento = Evento::all();
         $user = User::all();
 
-        return view('entradas-evento.create', compact('entradasEvento', 'evento', 'user'));
+        return view('admin.entradas-evento.create', compact('entradasEvento', 'evento', 'user'));
     }
 
     /**
@@ -60,7 +60,7 @@ class EntradasEventoController extends Controller
     {
         $entradasEvento = EntradasEvento::find($id);
 
-        return view('entradas-evento.show', compact('entradasEvento'));
+        return view('admin.entradas-evento.show', compact('entradasEvento'));
     }
 
     /**
@@ -73,7 +73,7 @@ class EntradasEventoController extends Controller
         $user = User::all();
 
 
-        return view('entradas-evento.edit', compact('entradasEvento','evento', 'user'));
+        return view('admin.entradas-evento.edit', compact('entradasEvento','evento', 'user'));
     }
 
     /**
@@ -100,9 +100,9 @@ class EntradasEventoController extends Controller
          //$entradasEvento = EntradasEvento::find($id);
 
         if($entradasEvento = EntradasEvento::find($id))
-        return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento'));
         else
-        return view('entradas-evento.EntradaNoValida');
+        return view('admin.entradas-evento.EntradaNoValida');
         //return ($entradasEvento);
     }
 
@@ -118,7 +118,7 @@ class EntradasEventoController extends Controller
             'validada'=>1
         ]);
 
-        return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento'));
         
          //$entradasEvento = EntradasEvento::find($id);
 
@@ -137,7 +137,7 @@ class EntradasEventoController extends Controller
      
          $entradasEvento = EntradasEvento::find($id);
 
-         $pdf = Pdf::loadView('entradas-evento.download',compact('entradasEvento'));
+         $pdf = Pdf::loadView('admin.entradas-evento.download',compact('entradasEvento'));
          return $pdf->stream('entrada.pdf');
 
 
@@ -146,18 +146,6 @@ class EntradasEventoController extends Controller
         //return view('entradas-evento.download', compact('entradasEvento'));
     }
     
-    public function generateCustomQRCode()
-    {
-        $image = QrCode::format('png')
-                        ->size(300)
-                        ->color(255, 0, 0)
-                        ->backgroundColor(255, 255, 255)
-                        ->margin(1)
-     // ->merge('/public/path-to-logo.jpg', .3)
-                        ->generate('Customize your QR code content here');
-    
-        return (['image' => $image]);
-    }
-    
+  
 
 }

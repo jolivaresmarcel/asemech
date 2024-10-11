@@ -27,7 +27,7 @@ class MisEntradasController extends Controller
         $user=Auth::user();
         $entradasEventos = EntradasEvento::where('user_id', $user->id)->paginate();
 
-        return view('MisEntradas.index', compact('entradasEventos'))
+        return view('Users.MisEntradas.index', compact('entradasEventos'))
             ->with('i', ($request->input('page', 1) - 1) * $entradasEventos->perPage());
     }
 

@@ -22,7 +22,7 @@ class TransaccioneController extends Controller
     {
         $transacciones = Transaccione::paginate();
 
-        return view('transaccione.index', compact('transacciones'))
+        return view('admin.transaccione.index', compact('transacciones'))
             ->with('i', ($request->input('page', 1) - 1) * $transacciones->perPage());
     }
 
@@ -33,7 +33,7 @@ class TransaccioneController extends Controller
     {
         $transaccione = new Transaccione();
 
-        return view('transaccione.create', compact('transaccione'));
+        return view('admin.transaccione.create', compact('transaccione'));
     }
 
     /**
@@ -119,7 +119,7 @@ class TransaccioneController extends Controller
     {
         $transaccione = Transaccione::find($id);
 
-        return view('transaccione.edit', compact('transaccione'));
+        return view('admin.transaccione.edit', compact('transaccione'));
     }
 
     /**

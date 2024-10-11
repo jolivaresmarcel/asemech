@@ -315,49 +315,62 @@ return [
         //     'url' => 'admin/blog',
         //     'can' => 'manage-blog',
         // ],
-        ['header' => 'Menú Principla'],
+        ['header' => 'MENÚ PRINCIPAL',
+            'can' => 'user.ver'],
         [
             'text' => 'Eventos',
             'url' => 'ComprarEventos',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'user.ver'
         ],
         [
             'text' => 'Mis Entradas',
             'url' => 'MisEntradas',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'user.ver'
         ],
         [
             'text' => 'Mis Certificados',
             'url' => 'MisCertificados',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'user.ver'
         ],
       
-        ['header' => 'Administración'],
+        ['header' => 'ADMINISTRACIÓN',
+            'can' => 'admin.ver'],
+            
         [
             'text' => 'Eventos',
             'url' => 'eventos',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
         ],
         [
             'text' => 'Entradas',
             'url' => 'entradas-eventos',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
+
         ],
         [
             'text' => 'Certificados',
             'url' => 'certificados',
             'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
         ],
-        ['header' => 'account_settings'],
+        [   'header' => 'ADMINISTRAR CUENTAS',
+            'can' => 'admin.ver'],
         [
-            'text' => 'profile',
+            'text' => 'Cuentas Usuarios',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'admin.ver'
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Roles',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'can' => 'admin.ver'
         ],
    
     ],

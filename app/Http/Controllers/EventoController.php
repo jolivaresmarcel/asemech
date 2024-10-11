@@ -19,7 +19,7 @@ class EventoController extends Controller
     {
         $eventos = Evento::paginate();
 
-        return view('evento.index', compact('eventos'))
+        return view('admin.evento.index', compact('eventos'))
             ->with('i', ($request->input('page', 1) - 1) * $eventos->perPage());
     }
 
@@ -30,7 +30,7 @@ class EventoController extends Controller
     {
         $evento = new Evento();
 
-        return view('evento.create', compact('evento'));
+        return view('admin.evento.create', compact('evento'));
     }
 
     /**
@@ -79,7 +79,7 @@ class EventoController extends Controller
     {
         $evento = Evento::find($id);
 
-        return view('evento.show', compact('evento'));
+        return view('admin.evento.show', compact('evento'));
     }
 
     /**
@@ -89,7 +89,7 @@ class EventoController extends Controller
     {
         $evento = Evento::find($id);
 
-        return view('evento.edit', compact('evento'));
+        return view('admin.evento.edit', compact('evento'));
     }
 
     /**
