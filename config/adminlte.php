@@ -358,6 +358,12 @@ return [
             'icon' => 'far fa-fw fa-file',
             'can' => 'admin.ver'
         ],
+        [
+            'text' => 'Compras',
+            'url' => 'transacciones',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
+        ],
         [   'header' => 'ADMINISTRAR CUENTAS',
             'can' => 'admin.ver'],
         [
