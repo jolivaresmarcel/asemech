@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asistencias', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->foreignUuid('entrada_id')->constrained('entradas_eventos')->cascadeOnUpdate();
-            $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();
+        Schema::create('pagos', function (Blueprint $table) {
+            $table->id();                                
+            $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();           
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
+            $table->integer('estado_id');
+            $table->integer('tipo');
+            $table->binary('archivo')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asistencias');
+        //
     }
 };

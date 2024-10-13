@@ -11,22 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-       
-            Schema::create('eventos', function (Blueprint $table) {
-                $table->id();
-                $table->string('titulo');
-                $table->longText('descripcion');
-                $table->longText('terminos');
-                $table->binary('foto');
-                $table->date('inicio');
-                $table->date('termino');
-                $table->integer('cupos');
-                $table->integer('cupos_disponibles');
-                $table->date('pucbicar');
-                $table->string('lugar');
-                $table->float('valor');
-                $table->timestamps();
-            });
+        Schema::create('eventos', function (Blueprint $table) {
+            $table->id();
+            $table->string('titulo');
+            $table->longText('descripcion');
+            $table->longText('terminos');
+            $table->binary('foto');
+            $table->date('inicio');
+            $table->date('termino');
+            $table->integer('cupos');
+            $table->integer('cupos_disponibles');         
+            $table->date('publicacion');
+            $table->string('lugar');
+            $table->float('valor');
+            $table->timestamps();
+        });
      
     }
 
