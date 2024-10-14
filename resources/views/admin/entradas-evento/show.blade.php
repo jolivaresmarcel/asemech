@@ -36,8 +36,8 @@
                                     {{ $entradasEvento->user->rut }}
                                 </div>
                                 <div class="form-group mb-3 mb20">
-                                    <strong>Fecha Compra:</strong>
-                                    {{ $entradasEvento->fecha_compra }}
+                                    <strong>Tipo entrada</strong>
+                                    {{ $entradasEvento->tiposEntrada->descripcion }}
                                 </div>
 
                     </div>

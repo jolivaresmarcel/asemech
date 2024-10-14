@@ -7,6 +7,11 @@ use App\Http\Controllers\TransaccioneController;
 use App\Http\Controllers\EntradasEventoController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\MisEntradasController;
+use App\Http\Controllers\ActividadeController;
+use App\Http\Controllers\TiposEntradaController;
+use App\Http\Controllers\ParticipacioneController;
+
+use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +28,11 @@ Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['
 Route::resource('MisEntradas', MisEntradasController::class)->middleware(['auth', 'verified']);
 Route::get('DownloadEntrada/{id}', [EntradasEventoController::class,'DownloadEntrada'])->middleware(['auth', 'verified']);
 Route::resource('transacciones', TransaccioneController::class)->middleware(['auth', 'verified']);
+Route::resource('actividades', ActividadeController::class);
+Route::resource('participaciones', ParticipacioneController::class);
+Route::resource('participaciones', TiposEntradaController::class);
+
+
 
 Route::get('comprar/{id}/{user_id}', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);
 //Route::get('generateCustomQRCode', [EntradasEventoController::class,'generateCustomQRCode'])->middleware(['auth', 'verified']);

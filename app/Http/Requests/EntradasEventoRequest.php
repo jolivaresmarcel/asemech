@@ -22,10 +22,9 @@ class EntradasEventoRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'estado' => 'required',
+			'tipo_entrada_id' => 'required',
 			'evento_id' => 'required',
 			'user_id' => 'required',
-			'fecha_compra' => 'required',
         ];
     }
 }

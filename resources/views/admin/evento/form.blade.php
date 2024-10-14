@@ -38,9 +38,14 @@
             {!! $errors->first('cupos', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="pucbicar" class="form-label">{{ __('Publicación') }}</label>
-            <input type="date" name="pucbicar" class="form-control @error('pucbicar') is-invalid @enderror" value="{{ old('pucbicar', $evento?->pucbicar) }}" id="pucbicar" placeholder="Pucbicar">
-            {!! $errors->first('pucbicar', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="cupos_disponibles" class="form-label">{{ __('Cupos Disponibles') }}</label>
+            <input type="text" name="cupos_disponibles" class="form-control @error('cupos_disponibles') is-invalid @enderror" value="{{ old('cupos_disponibles', $evento?->cupos_disponibles) }}" id="cupos_disponibles" placeholder="Cupos Disponibles">
+            {!! $errors->first('cupos_disponibles', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
+            <label for="publicacion" class="form-label">{{ __('Publicacion') }}</label>
+            <input type="date" name="publicacion" class="form-control @error('publicacion') is-invalid @enderror" value="{{ old('publicacion', $evento?->publicacion) }}" id="publicacion" placeholder="Publicacion">
+            {!! $errors->first('publicacion', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="lugar" class="form-label">{{ __('Lugar') }}</label>

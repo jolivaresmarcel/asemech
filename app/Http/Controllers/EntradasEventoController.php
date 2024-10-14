@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradasEventoRequest;
+use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -24,8 +25,9 @@ class EntradasEventoController extends Controller
     {
         $entradasEventos = EntradasEvento::paginate();
         $evento = Evento::all();
+        $tipo_entrada = TiposEntrada::all();
 
-        return view('admin.entradas-evento.index', compact('entradasEventos', 'evento'))
+        return view('admin.entradas-evento.index', compact('entradasEventos', 'evento', 'tipo_entrada'))
             ->with('i', ($request->input('page', 1) - 1) * $entradasEventos->perPage());
     }
 
@@ -37,8 +39,9 @@ class EntradasEventoController extends Controller
         $entradasEvento = new EntradasEvento();
         $evento = Evento::all();
         $user = User::all();
+        $tipo_entrada = TiposEntrada::all();
 
-        return view('admin.entradas-evento.create', compact('entradasEvento', 'evento', 'user'));
+        return view('admin.entradas-evento.create', compact('entradasEvento', 'evento', 'user', 'tipo_entrada'));
     }
 
     /**
@@ -47,11 +50,26 @@ class EntradasEventoController extends Controller
     public function store(EntradasEventoRequest $request): RedirectResponse
     {
        
-        EntradasEvento::create($request->validated());
+         EntradasEvento::create($request->validated());
 
-        return Redirect::route('entradas-eventos.index')
-            ->with('success', 'EntradasEvento created successfully.');
+         $eventos=Evento::find($request->evento_id);
+
+         $disponible =$eventos->cupos_disponibles-1;
+
+         $eventos->update(['cupos_disponibles' =>$disponible]);
+
+         return Redirect::route('entradas-eventos.index')
+             ->with('success', 'EntradasEvento created successfully.');
+
+
+        
     }
+
+    // public function store(EntradasEventoRequest $request)
+    // { 
+    //     return  ($request);
+
+    // }
 
     /**
      * Display the specified resource.
@@ -114,8 +132,8 @@ class EntradasEventoController extends Controller
             'id'=>$entradasEvento->id,
             'evento_id'=>$entradasEvento->evento_id, 
             'user_id'=>$entradasEvento->user_id, 
-            'fecha_compra'=>$entradasEvento->fecha_compra,
-            'validada'=>1
+            'tipo_entrada_id'=>$entradasEvento->tipo_emtrada_id,
+            
         ]);
 
         return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento'));

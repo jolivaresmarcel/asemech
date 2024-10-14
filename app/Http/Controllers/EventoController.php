@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\Actividade;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
@@ -61,7 +62,8 @@ class EventoController extends Controller
             'inicio'  => $request-> inicio, 
             'termino'  => $request-> termino, 
             'cupos'  => $request->cupos, 
-            'pucbicar' => $request->pucbicar, 
+            'cupos_disponibles' =>$request->cupos_disponibles, 
+            'publicacion' => $request->publicacion, 
             'lugar' => $request->lugar, 
             'valor'  => $request-> valor
         ]);
@@ -78,8 +80,10 @@ class EventoController extends Controller
     public function show($id): View
     {
         $evento = Evento::find($id);
+        $actividades = Actividade::where('evento_id', $evento->id)->get();
+        //return $actividades;
 
-        return view('admin.evento.show', compact('evento'));
+       return view('admin.evento.show', compact('evento', 'actividades'));
     }
 
     /**
@@ -118,8 +122,9 @@ class EventoController extends Controller
             'foto'  => $file, 
             'inicio'  => $request-> inicio, 
             'termino'  => $request-> termino, 
-            'cupos'  => $request->cupos, 
-            'pucbicar' => $request->pucbicar, 
+            'cupos'  => $request->cupos,
+            'cupos_disponibles' =>$request->cupos_disponibles, 
+            'publicacion' => $request->publicacion, 
             'lugar' => $request->lugar, 
             'valor'  => $request-> valor
         ]);

@@ -36,6 +36,10 @@
                 
                
             </div>
+            <div class="form-group mb-3 mb20">
+                <strong>TTIPO ENTRADA:</strong>
+                {{ strtoupper($entradasEvento->tiposEntrada->descripcion) }}
+            </div>
 
         </td>
        

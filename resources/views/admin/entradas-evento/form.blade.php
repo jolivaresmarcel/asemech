@@ -2,9 +2,26 @@
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
-            <label for="estado" class="form-label">{{ __('Estado') }}</label>
-            <input type="text" name="estado" class="form-control @error('estado') is-invalid @enderror" value="{{ old('estado', $entradasEvento?->estado) }}" id="estado" placeholder="Estado">
-            {!! $errors->first('estado', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="tipo_entrada_id" class="form-label">{{ __('Tipo entrada') }}</label>
+            {{-- <input type="text" name="estado" class="form-control @error('estado') is-invalid @enderror" value="{{ old('estado', $entradasEvento?->estado) }}" id="estado" placeholder="Estado">
+            {!! $errors->first('estado', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!} --}}
+
+
+            <select name="tipo_entrada_id" id="tipo_entrada_id" class="form-control">
+                <option value="">Selección el tipo de entrada</option>
+                
+                @foreach ($tipo_entrada as $t)
+   
+                                               
+                    <option value="{{ $t->id }}"
+                        {{ old('tipo_entrada_id') == $t->id ? 'selected' : ($entradasEvento->tipo_entrada_id == $t->id ? 'selected' : '' )}}>
+                        {{ $t->descripcion }}</option>
+                 
+                @endforeach
+            </select>
+
+            {!! $errors->first('tipo_entrada_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+
         </div>
         <div class="form-group mb-2 mb20">
             <label for="evento_id" class="form-label">{{ __('Evento') }}</label>
@@ -39,14 +56,10 @@
 
             {!! $errors->first('user_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
-        <div class="form-group mb-2 mb20">
-            <label for="fecha_compra" class="form-label">{{ __('Fecha Compra') }}</label>
-            <input type="date" name="fecha_compra" class="form-control @error('fecha_compra') is-invalid @enderror" value="{{ old('fecha_compra', $entradasEvento?->fecha_compra) }}" id="fecha_compra" placeholder="Fecha Compra">
-            {!! $errors->first('fecha_compra', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
+       
 
     </div>
     <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Generar entrada') }}</button>
     </div>
 </div>

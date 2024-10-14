@@ -19,8 +19,7 @@ return new class extends Migration
             $table->uuid('id')->primary();                 
             $table->foreignId('tipo_entrada_id')->constrained('tipos_entradas')->cascadeOnUpdate();
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
-            $table->date('fecha_compra');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();         
             $table->timestamps();
         });
     }

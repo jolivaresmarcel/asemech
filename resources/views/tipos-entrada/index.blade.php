@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Entradas Eventos
+    Tipos Entradas
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Entradas Eventos') }}
+                                {{ __('Tipos Entradas') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('entradas-eventos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('tipos-entradas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,34 +36,26 @@
                                     <tr>
                                         <th>No</th>
                                         
-								
-									<th >Evento</th>
-									<th >User</th>
-									<th >Tipo Entrada</th>
+									<th >Descripcion</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($entradasEventos as $entradasEvento)
+                                    @foreach ($tiposEntradas as $tiposEntrada)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										
-										<td >{{ $entradasEvento->evento->titulo }}</td>
-										<td >{{ $entradasEvento->user->name }}</td>
-										<td >{{ $entradasEvento->tiposEntrada->descripcion }}</td>
+										<td >{{ $tiposEntrada->descripcion }}</td>
 
                                             <td>
-                                                <form action="{{ route('entradas-eventos.destroy', $entradasEvento->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('entradas-eventos.show', $entradasEvento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('entradas-eventos.edit', $entradasEvento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('tipos-entradas.destroy', $tiposEntrada->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('tipos-entradas.show', $tiposEntrada->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('tipos-entradas.edit', $tiposEntrada->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Seguro que desea eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                    <a class="btn btn-sm btn-secondary " href="{{'download/'.$entradasEvento->id}}">Descargar Entrada</a>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                 </form>
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -72,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $entradasEventos->withQueryString()->links() !!}
+                {!! $tiposEntradas->withQueryString()->links() !!}
             </div>
         </div>
     </div>

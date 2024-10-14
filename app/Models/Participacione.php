@@ -2,31 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
- * Class EntradasEvento
+ * Class Participacione
  *
  * @property $id
- * @property $tipo_entrada_id
  * @property $evento_id
+ * @property $actividad_id
  * @property $user_id
+ * @property $fecha
  * @property $created_at
  * @property $updated_at
  *
+ * @property Actividade $actividade
  * @property Evento $evento
- * @property TiposEntrada $tiposEntrada
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class EntradasEvento extends Model
+class Participacione extends Model
 {
-    use HasUuids;
-    protected $keyType = 'string';
-
+    
     protected $perPage = 20;
 
     /**
@@ -34,23 +31,23 @@ class EntradasEvento extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['tipo_entrada_id', 'evento_id', 'user_id'];
+    protected $fillable = ['evento_id', 'actividad_id', 'user_id', 'fecha'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function actividade()
+    {
+        return $this->belongsTo(\App\Models\Actividade::class, 'actividad_id', 'id');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function evento()
     {
         return $this->belongsTo(\App\Models\Evento::class, 'evento_id', 'id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function tiposEntrada()
-    {
-        return $this->belongsTo(\App\Models\TiposEntrada::class, 'tipo_entrada_id', 'id');
     }
     
     /**

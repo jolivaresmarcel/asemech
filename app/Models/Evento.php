@@ -15,12 +15,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property $inicio
  * @property $termino
  * @property $cupos
- * @property $pucbicar
+ * @property $cupos_disponibles
+ * @property $publicacion
  * @property $lugar
  * @property $valor
  * @property $created_at
  * @property $updated_at
  *
+ * @property Actividade[] $actividades
+ * @property Certificado[] $certificados
+ * @property EntradasEvento[] $entradasEventos
+ * @property Pago[] $pagos
+ * @property Participacione[] $participaciones
+ * @property Transaccione[] $transacciones
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -34,7 +41,55 @@ class Evento extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['titulo', 'descripcion', 'terminos', 'foto', 'inicio', 'termino', 'cupos', 'pucbicar', 'lugar', 'valor'];
+    protected $fillable = ['titulo', 'descripcion', 'terminos', 'foto', 'inicio', 'termino', 'cupos', 'cupos_disponibles', 'publicacion', 'lugar', 'valor'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function actividades()
+    {
+        return $this->hasMany(\App\Models\Actividade::class, 'id', 'evento_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function certificados()
+    {
+        return $this->hasMany(\App\Models\Certificado::class, 'id', 'evento_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entradasEventos()
+    {
+        return $this->hasMany(\App\Models\EntradasEvento::class, 'id', 'evento_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pagos()
+    {
+        return $this->hasMany(\App\Models\Pago::class, 'id', 'evento_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function participaciones()
+    {
+        return $this->hasMany(\App\Models\Participacione::class, 'id', 'evento_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transacciones()
+    {
+        return $this->hasMany(\App\Models\Transaccione::class, 'id', 'evento_id');
+    }
+    
 }
