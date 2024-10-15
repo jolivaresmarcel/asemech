@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Transaccione;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EntradasEvento;
+use App\Models\Certificado;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
@@ -22,10 +23,31 @@ class ComprarEventoController extends Controller
      */
     public function index(Request $request): View
     {
+        $user=Auth::user();     
+        $certificado = Certificado::where('user_id', $user->id)->where('es_valido', 1)->get();
+        $UsuarioHabilitado=0;
+       
+        foreach($certificado as $c)
+        {
+            if($c->fecha_caducidad>=now())
+            {
+                $UsuarioHabilitado=1;
+            }
+        }
+
+
+        if($UsuarioHabilitado==1){
         $eventos = Evento::paginate();
 
-        return view('Users.ComprarEventos.index', compact('eventos'))
+        return view('users.ComprarEventos.index', compact('eventos'))
             ->with('i', ($request->input('page', 1) - 1) * $eventos->perPage());
+        }else{
+            
+            $certificados = Certificado::where('user_id', $user->id)->get();
+            return view('users.miscertificado.index', compact('certificados'));
+            // ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
+
+        }
     }
 
     /**

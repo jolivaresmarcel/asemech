@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'anio' => '7',
             'email' => 'admin@asemech.cl',
             'password' => Hash::make('admin1234'),
+            'email_verified_at' => 'datetime'
         ])->assignRole('Admin');
     }
 }

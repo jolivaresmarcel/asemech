@@ -10,6 +10,8 @@ use App\Http\Controllers\MisEntradasController;
 use App\Http\Controllers\ActividadeController;
 use App\Http\Controllers\TiposEntradaController;
 use App\Http\Controllers\ParticipacioneController;
+use App\Http\Controllers\CertificadoController;
+use App\Http\Controllers\MisCertificadoController;
 
 use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +23,7 @@ Route::get('/', function () {
 Route::resource('eventos', EventoController::class)->middleware(['auth', 'verified']);
 Route::resource('entradas-eventos', EntradasEventoController::class)->middleware(['auth', 'verified']);
 Route::get('valida/{id?}', [EntradasEventoController::class,'ValidaEntrada'])->middleware(['auth', 'verified']);
-Route::get('RegistraAsistencia/{id}', [EntradasEventoController::class,'RegistraAsistencia'])->middleware(['auth', 'verified']);
+Route::get('RegistraAsistencia/{id}/{a}', [EntradasEventoController::class,'RegistraAsistencia'])->middleware(['auth', 'verified']);
 Route::get('download/{id}', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
 Route::resource('asistencias', AsistenciaController::class);
 Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['auth', 'verified']);
@@ -30,8 +32,10 @@ Route::get('DownloadEntrada/{id}', [EntradasEventoController::class,'DownloadEnt
 Route::resource('transacciones', TransaccioneController::class)->middleware(['auth', 'verified']);
 Route::resource('actividades', ActividadeController::class);
 Route::resource('participaciones', ParticipacioneController::class);
-Route::resource('participaciones', TiposEntradaController::class);
+//Route::resource('participaciones', TiposEntradaController::class);
+Route::resource('certificados', CertificadoController::class);
 
+Route::resource('miscertificados', MisCertificadoController::class);
 
 
 Route::get('comprar/{id}/{user_id}', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);

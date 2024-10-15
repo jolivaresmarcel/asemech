@@ -22,10 +22,9 @@ class CertificadoRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'evento_id' => 'required',
 			'user_id' => 'required',
 			'es_valido' => 'required',
-			'archivo' => 'required',
+			'fecha_caducidad' => 'required',
         ];
     }
 }

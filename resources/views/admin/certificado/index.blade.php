@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >User Id</th>
+									<th >Usuario</th>
 									<th >Es Valido</th>
 									<th >Fecha Caducidad</th>
 									<th >Archivo</th>
@@ -49,10 +49,16 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $certificado->user_id }}</td>
-										<td >{{ $certificado->es_valido }}</td>
+										<td >{{ $certificado->user->name }}</td>
+										<td >
+                                            @if($certificado->es_valido == 0)
+                                                Invalido    
+                                            @else
+                                                Valido  
+                                            @endif
+                                            {{-- {{ $certificado->es_valido }}</td> --}}
 										<td >{{ $certificado->fecha_caducidad }}</td>
-										<td >{{ $certificado->archivo }}</td>
+										<td ><a href="/{{ $certificado->archivo }}">Descarga</a></td>
 
                                             <td>
                                                 <form action="{{ route('certificados.destroy', $certificado->id) }}" method="POST">

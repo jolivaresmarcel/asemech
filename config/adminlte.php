@@ -331,7 +331,7 @@ return [
         ],
         [
             'text' => 'Mis Certificados',
-            'url' => 'MisCertificados',
+            'url' => 'miscertificados',
             'icon' => 'far fa-fw fa-file',
             'can' => 'user.ver'
         ],

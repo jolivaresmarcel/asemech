@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('certificados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('miscertificados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -34,9 +34,9 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                  
                                         
-									<th >User Id</th>
+							
 									<th >Es Valido</th>
 									<th >Fecha Caducidad</th>
 									<th >Archivo</th>
@@ -47,17 +47,15 @@
                                 <tbody>
                                     @foreach ($certificados as $certificado)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-										<td >{{ $certificado->user_id }}</td>
+                                   
 										<td >{{ $certificado->es_valido }}</td>
 										<td >{{ $certificado->fecha_caducidad }}</td>
 										<td >{{ $certificado->archivo }}</td>
 
                                             <td>
-                                                <form action="{{ route('certificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('certificados.show', $certificado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('certificados.edit', $certificado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('miscertificados.destroy', $certificado->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('miscertificados.show', $certificado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('miscertificados.edit', $certificado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -70,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $certificados->withQueryString()->links() !!}
+                {{-- {!! $certificados->withQueryString()->links() !!} --}}
             </div>
         </div>
     </div>

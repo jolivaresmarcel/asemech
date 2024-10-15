@@ -61,18 +61,10 @@
                                     {{ $entradasEvento->user->rut }}
                                 </div>
                                 <div class="form-group mb-3 mb20">
-                                    <strong>Fecha Compra:</strong>
-                                    {{ $entradasEvento->fecha_compra }}
+                                    <strong>Tipo entrada</strong>
+                                    {{ $entradasEvento->tiposEntrada->descripcion }}
                                 </div>
-                                @if($entradasEvento->validada==1)
-                                <div class="float-right">                                                                  
-                                    <a class="btn btn-danger btn-sm" href="#"> {{ __('Asistencia registrada') }}</a>
-                                </div>
-                                @else
-                                <div class="float-right">                                                                  
-                                    <a class="btn btn-success btn-sm" href="/RegistraAsistencia/{{$entradasEvento->id}}"> {{ __('Marcar asistencia') }}</a>
-                                </div>
-                                @endif
+                               
 
                     </div>
 
@@ -83,8 +75,64 @@
             </div>
                 
 
+         </div>
+
+         <div class="card-body bg-white">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="thead">
+                        <tr>
+                                                      
+                        <th >Actividad</th>
+                        <th >Fecha</th>
+                        <th >Lugar</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($actividades as $actividade)
+                            <tr>
+                         
+                            <td >{{ $actividade->descripcion }}</td>
+                            <td >{{ $actividade->fecha }}</td>
+                            <td >{{ $actividade->lugar }}</td>
+
+                                <td>
+                                    @php $tieneRegistro=0 @endphp
+                                    @if($participacion->count()>0)
+                                        @foreach ($participacion as $p)
+                                            @if($p->actividad_id==$actividade->id)
+                                            @php $tieneRegistro=1 @endphp
+                                            @endif
+                                        @endforeach
+
+                                        @if($tieneRegistro==1)
+                                                <div class="float-right">                                                                  
+                                                    <a class="btn btn-danger btn-sm" href="#"> {{ __('Asistencia registrada') }}</a>
+                                                </div>
+                                            @else
+                                                <div class="float-right">                                                                  
+                                                    <a class="btn btn-primary btn-sm" href="/RegistraAsistencia/{{$entradasEvento->id}}/{{$actividade->id}}"> {{ __('Registrar asistencia') }}</a>
+                                                </div>
+                                            @endif
+
+                                    @else                               
+                                        <div class="float-right">                                                                  
+                                            <a class="btn btn-primary btn-sm" href="/RegistraAsistencia/{{$entradasEvento->id}}/{{$actividade->id}}"> {{ __('Registrar asistencia') }}</a>
+                                        </div>
+                                    @endif
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
+    </div>
 
         
     </section>

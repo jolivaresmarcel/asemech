@@ -9,10 +9,13 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradasEventoRequest;
+use App\Models\Actividade;
+use App\Models\Participacione;
 use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DateTime;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -21,6 +24,9 @@ class EntradasEventoController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
+    
+
     public function index(Request $request): View
     {
         $entradasEventos = EntradasEvento::paginate();
@@ -59,7 +65,7 @@ class EntradasEventoController extends Controller
          $eventos->update(['cupos_disponibles' =>$disponible]);
 
          return Redirect::route('entradas-eventos.index')
-             ->with('success', 'EntradasEvento created successfully.');
+             ->with('success', 'Entrada creada.');
 
 
         
@@ -102,15 +108,24 @@ class EntradasEventoController extends Controller
         $entradasEvento->update($request->validated());
 
         return Redirect::route('entradas-eventos.index')
-            ->with('success', 'EntradasEvento updated successfully');
+            ->with('success', 'Entrada fue actualizada');
     }
 
     public function destroy($id): RedirectResponse
     {
+
+        $entrada=EntradasEvento::find($id);
+
         EntradasEvento::find($id)->delete();
 
+        $eventos=Evento::find($entrada->evento_id);
+
+        $disponible =$eventos->cupos_disponibles+1;
+
+        $eventos->update(['cupos_disponibles' =>$disponible]);
+        
         return Redirect::route('entradas-eventos.index')
-            ->with('success', 'EntradasEvento deleted successfully');
+            ->with('success', 'La entrada fue eliminada');
     }
 
     public function ValidaEntrada($id):view
@@ -118,33 +133,34 @@ class EntradasEventoController extends Controller
          //$entradasEvento = EntradasEvento::find($id);
 
         if($entradasEvento = EntradasEvento::find($id))
-        return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        {            
+            $actividades = Actividade::where('evento_id', $entradasEvento->evento_id)->get();
+            $participacion = Participacione::where('evento_id', $entradasEvento->evento_id)
+            ->where('user_id', $entradasEvento->user_id)->get();
+            return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento', 'actividades', 'participacion'));
+        }
         else
+        {
         return view('admin.entradas-evento.EntradaNoValida');
+        }
         //return ($entradasEvento);
     }
 
-    public function RegistraAsistencia($id):View
+    public function RegistraAsistencia($id,$a)
     {
         $entradasEvento=EntradasEvento::find($id);
-        $entradasEvento->validada=0;
-        $entradasEvento->update([
-            'id'=>$entradasEvento->id,
-            'evento_id'=>$entradasEvento->evento_id, 
-            'user_id'=>$entradasEvento->user_id, 
-            'tipo_entrada_id'=>$entradasEvento->tipo_emtrada_id,
-            
-        ]);
+        $actividades = Actividade::find($a);
 
-        return view('admin.entradas-evento.ValidaEntrada', compact('entradasEvento'));
+        Participacione::create(['evento_id'=>$entradasEvento->evento_id, 
+        'actividad_id'=>$actividades->id, 'user_id'=>$entradasEvento->user_id, 
+        'fecha'=>now()]);
+
+       $actividades = Actividade::where('evento_id', $entradasEvento->evento_id)->get();
+       $participacion = Participacione::where('evento_id', $entradasEvento->evento_id);
+
+        return redirect('/valida/'.$id);//, compact('entradasEvento', 'actividades', 'participacion'));
         
-         //$entradasEvento = EntradasEvento::find($id);
 
-        // if($entradasEvento = EntradasEvento::find($id))
-        // return view('entradas-evento.ValidaEntrada', compact('entradasEvento'));
-        // else
-        // return view('entradas-evento.EntradaNoValida');
-        //return ($entradasEvento);
     }
 
     public function download($id)

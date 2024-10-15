@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('certificados', function (Blueprint $table) {
-            $table->id();                                
-            $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();           
+            $table->id();                                     
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
             $table->integer('es_valido');
-            $table->binary('archivo');
+            $table->date('fecha_caducidad');
+            $table->binary('archivo')->nullable();
             $table->timestamps();
         });
     }
