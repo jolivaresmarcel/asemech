@@ -19,8 +19,9 @@ class MisCertificadoController extends Controller
     public function index(Request $request): View
     {
         $certificados = Certificado::paginate();
+        $error="";
 
-        return view('users.miscertificado.index', compact('certificados'))
+        return view('users.miscertificado.index', compact('certificados','error'))
             ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
     }
 
@@ -60,7 +61,7 @@ class MisCertificadoController extends Controller
             'es_valido'=> $request-> es_valido, 
             'fecha_caducidad' => $request->fecha_caducidad, 
             'archivo'=>$file]);
-
+       
         return Redirect::route('miscertificados.index')
             ->with('success', 'Certificado created successfully.');
     }

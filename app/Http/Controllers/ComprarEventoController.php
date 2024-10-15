@@ -42,10 +42,12 @@ class ComprarEventoController extends Controller
         return view('users.ComprarEventos.index', compact('eventos'))
             ->with('i', ($request->input('page', 1) - 1) * $eventos->perPage());
         }else{
-            
+            $error="Para ver los eventos y comprar la entrada debe tener un certificado válido, si aún no lo haz ingresado, hazlo a continuación";
             $certificados = Certificado::where('user_id', $user->id)->get();
-            return view('users.miscertificado.index', compact('certificados'));
+            return view('users.miscertificado.index', compact('certificados','error'));
+            
             // ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
+            
 
         }
     }

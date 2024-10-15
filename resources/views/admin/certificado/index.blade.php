@@ -37,7 +37,7 @@
                                         <th>No</th>
                                         
 									<th >Usuario</th>
-									<th >Es Valido</th>
+									<th >Estado</th>
 									<th >Fecha Caducidad</th>
 									<th >Archivo</th>
 
@@ -51,12 +51,20 @@
                                             
 										<td >{{ $certificado->user->name }}</td>
 										<td >
-                                            @if($certificado->es_valido == 0)
-                                                Invalido    
-                                            @else
+                                            @if($certificado->es_valido == 1)
+                                            @if($certificado->fecha_caducidad>=now())
                                                 Valido  
-                                            @endif
-                                            {{-- {{ $certificado->es_valido }}</td> --}}
+                                            @else
+                                                Cadudado
+                                            @endif    
+                                        @else
+                                            @if($certificado->es_valido == -1)
+                                                Por validar    
+                                            @else
+                                                Invalido
+                                            @endif    
+                                        @endif
+                                        </td>
 										<td >{{ $certificado->fecha_caducidad }}</td>
 										<td ><a href="/{{ $certificado->archivo }}">Descarga</a></td>
 

@@ -18,15 +18,22 @@
 
                              <div class="float-right">
                                 <a href="{{ route('miscertificados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Agregar nuevo certificado') }}
                                 </a>
                               </div>
                         </div>
                     </div>
+                   
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success m-4">
                             <p>{{ $message }}</p>
                         </div>
+                    @else
+                        @if ($error !="")
+                            <div class="alert alert-danger m-4">
+                                <p>{{ $error }}</p>
+                            </div>
+                        @endif
                     @endif
 
                     <div class="card-body bg-white">
@@ -37,7 +44,7 @@
                                   
                                         
 							
-									<th >Es Valido</th>
+									<th >Estado</th>
 									<th >Fecha Caducidad</th>
 									<th >Archivo</th>
 
@@ -48,17 +55,34 @@
                                     @foreach ($certificados as $certificado)
                                         <tr>
                                    
-										<td >{{ $certificado->es_valido }}</td>
-										<td >{{ $certificado->fecha_caducidad }}</td>
-										<td >{{ $certificado->archivo }}</td>
+											<td >
+                                           
+                                                    @if($certificado->es_valido == 1)
+                                                        @if($certificado->fecha_caducidad>=now())
+                                                            Valido  
+                                                        @else
+                                                            Cadudado
+                                                        @endif    
+                                                    @else
+                                                        @if($certificado->es_valido == -1)
+                                                            Por validar    
+                                                        @else
+                                                            Invalido
+                                                        @endif    
+                                                    @endif
+                                            
+                                            </td>
+                                       <td >{{ $certificado->fecha_caducidad }}</td>
 
-                                            <td>
+										                                            <td>
                                                 <form action="{{ route('miscertificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('miscertificados.show', $certificado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('miscertificados.edit', $certificado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
+                                                    @if($certificado->es_valido == -1)
+                                                                                                        
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Deseas eliminar el certificado?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>
