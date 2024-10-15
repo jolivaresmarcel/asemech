@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Certificado;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\CertificadoRequest;
@@ -29,7 +30,7 @@ class MisCertificadoController extends Controller
     public function create(): View
     {
         $certificado = new Certificado();
-        $user = User::all();
+        $user=Auth::user();   
 
         return view('users.miscertificado.create', compact('certificado', 'user'));
     }
