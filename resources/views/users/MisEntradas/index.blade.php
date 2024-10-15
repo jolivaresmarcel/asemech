@@ -34,8 +34,8 @@
                                         
 								
 									<th >Evento</th>
-									<th >User</th>
-									<th >Fecha Compra</th>
+									<th >Usuario</th>
+								
 
                                         <th></th>
                                     </tr>
@@ -48,7 +48,7 @@
 										
 										<td >{{ $entradasEvento->evento->titulo }}</td>
 										<td >{{ $entradasEvento->user->name }}</td>
-										<td >{{ $entradasEvento->fecha_compra }}</td>
+							
 
                                             <td>
                                                    <a class="btn btn-sm btn-secondary " href="{{'download/'.$entradasEvento->id}}">Descargar Entrada</a>

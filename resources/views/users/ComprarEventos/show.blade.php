@@ -21,10 +21,10 @@
         <a class="m-2" href="{{ route('ComprarEventos.index') }}">Eventos></a>{{$evento->titulo}}
         <div class="row mt-2">
             <div class="col-md-12">
-                <div class="card" style="background-color: #757C88; color:white;">
+                <div class="card" style="background-color: #efefef; color:rgb(61, 61, 61);">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title"><h1>{{ strtoupper($evento->titulo) }}</h1></span>
+                            <span class="text-center"><h2>{{ $evento->titulo }}</h1></span>
                         </div>                                              
                     </div>
                     <div class="row ml-0 mr-0">                       
@@ -32,13 +32,7 @@
                             <img width="100%" src="/{{ $evento->foto }}" />
                         </div>
                         <div class="card-body bg-white col-md-6">
-                            
-                                   
-                                    
-                                    <div class="form-group mb-2 mb20">
-                                        <strong>Descripcion:</strong>
-                                        {{ $evento->descripcion }}
-                                    </div>                                   
+                                                            
                                     <div class="form-group mb-2 mb20">
                                         <strong>Inicio:</strong>
                                         {{ $evento->inicio }}
@@ -63,6 +57,11 @@
                                         <strong>Valor:</strong>
                                         {{ $evento->valor }}
                                     </div>
+                                    <div class="float-right">
+                                        @if($entradasevento->count()==0) 
+                                            <a class="btn btn-success" href="/comprar/{{$evento->id}}/{{Auth::user()->id}}">Comprar entrada</a>
+                                        @endif 
+                                    </div>
 
                         </div>                        
                     </div>
@@ -71,15 +70,17 @@
                 </div>
             </div>
         </div>
-        <div class="card-body bg-white col-md-12">
+        <div class="card-body bg-white col-md-12 mt-1">
+            <strong>Descripción:</strong>
+            <br />
+            {{ $evento->descripcion }} 
+        </div>  
+ 
+        <div class="card-body bg-white col-md-12 mt-3">
             <strong>Términos y condiciones:</strong>
             <br />
             {{ $evento->terminos }}
         </div>
-        <div class="float-right">
-            @if($entradasevento->count()==0) 
-                <a class="btn btn-success" href="/comprar/{{$evento->id}}/{{Auth::user()->id}}">Comprar entrada</a>
-            @endif 
-        </div>
+       
     </section>
 @endsection

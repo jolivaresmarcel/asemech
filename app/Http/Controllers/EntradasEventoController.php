@@ -95,9 +95,10 @@ class EntradasEventoController extends Controller
         $entradasEvento = EntradasEvento::find($id);
         $evento = Evento::all();
         $user = User::all();
+        $tipo_entrada = TiposEntrada::all();
 
 
-        return view('admin.entradas-evento.edit', compact('entradasEvento','evento', 'user'));
+        return view('admin.entradas-evento.edit', compact('entradasEvento','evento', 'user','tipo_entrada'));
     }
 
     /**

@@ -5,23 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Pago
+ * Class Compra
  *
  * @property $id
  * @property $evento_id
  * @property $user_id
  * @property $estado_id
- * @property $tipo
+ * @property $tipo_compra_id
  * @property $archivo
  * @property $created_at
  * @property $updated_at
  *
  * @property Evento $evento
+ * @property TiposCompra $tiposCompra
  * @property User $user
+ * @property Transaccione[] $transacciones
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Pago extends Model
+class Compra extends Model
 {
     
     protected $perPage = 20;
@@ -31,7 +33,7 @@ class Pago extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['evento_id', 'user_id', 'estado_id', 'tipo', 'archivo'];
+    protected $fillable = ['evento_id', 'user_id', 'estado_id', 'tipo_compra_id', 'archivo'];
 
 
     /**
@@ -45,9 +47,25 @@ class Pago extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function tiposCompra()
+    {
+        return $this->belongsTo(\App\Models\TiposCompra::class, 'tipo_compra_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transacciones()
+    {
+        return $this->hasMany(\App\Models\Transaccione::class, 'id', 'compra_id');
     }
     
 }

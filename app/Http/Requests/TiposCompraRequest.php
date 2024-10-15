@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TransaccioneRequest extends FormRequest
+class TiposCompraRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,7 @@ class TransaccioneRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'payment_id' => 'required|string',
-			'evento_id' => 'required',
-			'user_id' => 'required',
-			'compra_id' => 'required',
-			'status' => 'required|string',
-			'status_detail' => 'required|string',
+			'descripcion' => 'required|string',
         ];
     }
 }

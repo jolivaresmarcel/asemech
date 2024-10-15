@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Models\User;
 use App\Models\Transaccione;
-use Illuminate\Support\Facades\Auth;
 use App\Models\EntradasEvento;
 use App\Models\Certificado;
+use App\Models\Compra;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
@@ -72,12 +74,23 @@ class ComprarEventoController extends Controller
          $evento = Evento::find($id);
          $user = User::find($user_id);
 
+         //Crea compra 
+
+         $compra = Compra::Create([
+            'evento_id' => $evento->id, 
+            'user_id' => $user->id, 
+            'estado_id'=>1, 
+            'tipo_compra_id'=>1
+         ]);
+
+
 
 
       $transaccion=Transaccione::create([
             'payment_id'=>'1', 
             'evento_id' => $evento->id, 
             'user_id' => $user->id, 
+            'compra_id' => $compra->id,
             'status'=>'pending', 
             'status_detail'=>'pending']);
            
@@ -109,7 +122,9 @@ class ComprarEventoController extends Controller
         "amount" => $evento->valor,
         "currency" => "CLP",
         "subject" => "Cobro de prueba",
-        "return_url"=>"http://asemech-dashboard.test/transacciones/".$transaccion->id
+        "return_url"=>"http://asemech.test/transacciones/".$transaccion->id,
+        "cancel_url"=>"http://asemech.test/transacciones/".$transaccion->id,
+        "picture_url"=>"http://asemech.test/".$evento->foto
         );
         
         curl_setopt_array($curl, [
@@ -137,15 +152,13 @@ class ComprarEventoController extends Controller
 
         Transaccione::where('id',$transaccion->id)->update([
             'payment_id'=>$json->payment_id, 
-            'evento_id' => $evento->id, 
-            'user_id' => $user->id, 
+            // 'evento_id' => $evento->id, 
+            // 'user_id' => $user->id, 
             'status'=>'pending', 
             'status_detail'=>'pending', 
             'create_payment'=>$response]);
-
             return Redirect($json->payment_url);
         }
-
        
        return ($response."Error : ".$error);
     }

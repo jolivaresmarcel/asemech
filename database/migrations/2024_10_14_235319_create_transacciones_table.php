@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('payment_id');
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
+            $table->foreignId('compra_id')->constrained('compras')->cascadeOnUpdate();
             $table->string('status');
             $table->string('status_detail');
             $table->json('create_payment')->nullable();

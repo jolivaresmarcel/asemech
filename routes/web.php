@@ -12,7 +12,8 @@ use App\Http\Controllers\TiposEntradaController;
 use App\Http\Controllers\ParticipacioneController;
 use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\MisCertificadoController;
-
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\TiposCompraController;
 use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Route;
 
@@ -25,17 +26,28 @@ Route::resource('entradas-eventos', EntradasEventoController::class)->middleware
 Route::get('valida/{id?}', [EntradasEventoController::class,'ValidaEntrada'])->middleware(['auth', 'verified']);
 Route::get('RegistraAsistencia/{id}/{a}', [EntradasEventoController::class,'RegistraAsistencia'])->middleware(['auth', 'verified']);
 Route::get('download/{id}', [EntradasEventoController::class,'download'])->middleware(['auth', 'verified']);
-Route::resource('asistencias', AsistenciaController::class);
 Route::resource('ComprarEventos', ComprarEventoController::class)->middleware(['auth', 'verified']);
 Route::resource('MisEntradas', MisEntradasController::class)->middleware(['auth', 'verified']);
 Route::get('DownloadEntrada/{id}', [EntradasEventoController::class,'DownloadEntrada'])->middleware(['auth', 'verified']);
 Route::resource('transacciones', TransaccioneController::class)->middleware(['auth', 'verified']);
-Route::resource('actividades', ActividadeController::class);
-Route::resource('participaciones', ParticipacioneController::class);
-//Route::resource('participaciones', TiposEntradaController::class);
-Route::resource('certificados', CertificadoController::class);
 
-Route::resource('miscertificados', MisCertificadoController::class);
+
+Route::middleware(['auth', 'verified'])->group(function(){
+
+    Route::resource('actividades', ActividadeController::class);
+    Route::resource('participaciones', ParticipacioneController::class);
+    //Route::resource('participaciones', TiposEntradaController::class);
+    Route::resource('certificados', CertificadoController::class);
+    Route::resource('compras', CompraController::class);
+    Route::resource('miscertificados', MisCertificadoController::class);
+    Route::resource('tipos-compras', TiposCompraController::class);
+    Route::get('comprobante/{id}', [TransaccioneController::class,'comprobante'])->middleware(['auth', 'verified']);
+    Route::get('/diploma', function () {
+        return view('admin.participacione.diploma');
+    })->middleware(['auth', 'verified'])->name('dashboard');
+
+});
+
 
 
 Route::get('comprar/{id}/{user_id}', [ComprarEventoController::class, 'comprar'])->middleware(['auth', 'verified']);

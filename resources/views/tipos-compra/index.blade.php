@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Certificados
+    Tipos Compras
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Certificados') }}
+                                {{ __('Tipos Compras') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('certificados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('tipos-compras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,41 +36,22 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Usuario</th>
-									<th >Estado</th>
-									<th >Fecha Caducidad</th>
-									
+									<th >Descripcion</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($certificados as $certificado)
+                                    @foreach ($tiposCompras as $tiposCompra)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $certificado->user->name }}</td>
-										<td >
-                                            @if($certificado->es_valido == 1)
-                                            @if($certificado->fecha_caducidad>=now())
-                                                Valido  
-                                            @else
-                                                Cadudado
-                                            @endif    
-                                        @else
-                                            @if($certificado->es_valido == -1)
-                                                Por validar    
-                                            @else
-                                                Invalido
-                                            @endif    
-                                        @endif
-                                        </td>
-										<td >{{ $certificado->fecha_caducidad }}</td>
-										
+										<td >{{ $tiposCompra->descripcion }}</td>
+
                                             <td>
-                                                <form action="{{ route('certificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('certificados.edit', $certificado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('tipos-compras.destroy', $tiposCompra->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('tipos-compras.show', $tiposCompra->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('tipos-compras.edit', $tiposCompra->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -83,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $certificados->withQueryString()->links() !!}
+                {!! $tiposCompras->withQueryString()->links() !!}
             </div>
         </div>
     </div>

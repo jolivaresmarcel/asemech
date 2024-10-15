@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $participacione->name ?? __('Show') . " " . __('Participacione') }}
+    {{ $compra->name ?? __('Show') . " " . __('Compra') }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Participacione</span>
+                            <span class="card-title">{{ __('Show') }} Compra</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('participaciones.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('compras.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
@@ -22,19 +22,23 @@
                         
                                 <div class="form-group mb-2 mb20">
                                     <strong>Evento Id:</strong>
-                                    {{ $participacione->evento_id }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Actividad Id:</strong>
-                                    {{ $participacione->actividad_id }}
+                                    {{ $compra->evento_id }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
                                     <strong>User Id:</strong>
-                                    {{ $participacione->user_id }}
+                                    {{ $compra->user_id }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Fecha:</strong>
-                                    {{ $participacione->fecha }}
+                                    <strong>Estado Id:</strong>
+                                    {{ $compra->estado_id }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Tipo Compra Id:</strong>
+                                    {{ $compra->tipo_compra_id }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Archivo:</strong>
+                                    {{ $compra->archivo }}
                                 </div>
 
                     </div>

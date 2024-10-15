@@ -60,6 +60,6 @@
 
     </div>
     <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Generar entrada') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Guardar entrada') }}</button>
     </div>
 </div>

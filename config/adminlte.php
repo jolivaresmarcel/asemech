@@ -330,7 +330,7 @@ return [
             'can' => 'user.ver'
         ],
         [
-            'text' => 'Mis Certificados',
+            'text' => 'Mis documentos',
             'url' => 'miscertificados',
             'icon' => 'far fa-fw fa-file',
             'can' => 'user.ver'
@@ -360,10 +360,17 @@ return [
         ],
         [
             'text' => 'Compras',
+            'url' => 'compras',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
+        ],
+        [
+            'text' => 'Transacciones Khipu',
             'url' => 'transacciones',
             'icon' => 'far fa-fw fa-file',
             'can' => 'admin.ver'
         ],
+
         [   'header' => 'ADMINISTRAR CUENTAS',
             'can' => 'admin.ver'],
         [

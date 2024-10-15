@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('tipos_compras', function (Blueprint $table) {
+            $table->id();                                            
+            $table->string('descripcion');
+            $table->timestamps();
+        });
+
+
+        Schema::create('compras', function (Blueprint $table) {
             $table->id();                                
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();           
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
             $table->integer('estado_id');
-            $table->integer('tipo');
+            $table->foreignId('tipo_compra_id')->constrained('tipos_compras')->cascadeOnUpdate();
             $table->binary('archivo')->nullable();
             $table->timestamps();
         });

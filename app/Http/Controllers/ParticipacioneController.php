@@ -6,6 +6,7 @@ use App\Models\Participacione;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\ParticipacioneRequest;
+use App\Models\Evento;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -14,23 +15,24 @@ class ParticipacioneController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request, Evento $evento): View
     {
+       // $participaciones = Participacione::where('evento_id', $evento->id)->paginate();
         $participaciones = Participacione::paginate();
 
-        return view('participacione.index', compact('participaciones'))
+        return view('admin.participacione.index', compact('participaciones'))
             ->with('i', ($request->input('page', 1) - 1) * $participaciones->perPage());
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
-    {
-        $participacione = new Participacione();
+    // public function create(): View
+    // {
+    //     $participacione = new Participacione();
 
-        return view('participacione.create', compact('participacione'));
-    }
+    //     return view('admin.participacione.create', compact('participacione'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -39,46 +41,46 @@ class ParticipacioneController extends Controller
     {
         Participacione::create($request->validated());
 
-        return Redirect::route('participaciones.index')
+        return Redirect::route('admin.participaciones.index')
             ->with('success', 'Participacione created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id): View
-    {
-        $participacione = Participacione::find($id);
+    // public function show($id): View
+    // {
+    //     $participacione = Participacione::find($id);
 
-        return view('participacione.show', compact('participacione'));
-    }
+    //     return view('participacione.show', compact('participacione'));
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id): View
-    {
-        $participacione = Participacione::find($id);
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
+    // public function edit($id): View
+    // {
+    //     $participacione = Participacione::find($id);
 
-        return view('participacione.edit', compact('participacione'));
-    }
+    //     return view('participacione.edit', compact('participacione'));
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(ParticipacioneRequest $request, Participacione $participacione): RedirectResponse
-    {
-        $participacione->update($request->validated());
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(ParticipacioneRequest $request, Participacione $participacione): RedirectResponse
+    // {
+    //     $participacione->update($request->validated());
 
-        return Redirect::route('participaciones.index')
-            ->with('success', 'Participacione updated successfully');
-    }
+    //     return Redirect::route('participaciones.index')
+    //         ->with('success', 'Participacione updated successfully');
+    // }
 
-    public function destroy($id): RedirectResponse
-    {
-        Participacione::find($id)->delete();
+    // public function destroy($id): RedirectResponse
+    // {
+    //     Participacione::find($id)->delete();
 
-        return Redirect::route('participaciones.index')
-            ->with('success', 'Participacione deleted successfully');
-    }
+    //     return Redirect::route('participaciones.index')
+    //         ->with('success', 'Participacione deleted successfully');
+    // }
 }

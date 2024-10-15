@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Pago
+    {{ __('Update') }} Compra
 @endsection
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
+        <div class="">
             <div class="col-md-12">
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Pago</span>
+                        <span class="card-title">{{ __('Update') }} Compra</span>
                     </div>
                     <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('pagos.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('compras.update', $compra->id) }}"  role="form" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('pago.form')
+                            @include('compra.form')
 
                         </form>
                     </div>

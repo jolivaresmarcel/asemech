@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaccione;
+use App\Models\EntradasEvento;
+use App\Models\Compra;
+use App\Models\Evento;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TransaccioneRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Models\EntradasEvento;
-use App\Models\Evento;
-use App\Models\User;
 use App\Http\Controllers\MisEntradasController;
 
 class TransaccioneController extends Controller
@@ -53,6 +54,7 @@ class TransaccioneController extends Controller
     public function show($id): RedirectResponse
     {
         $transaccione = Transaccione::find($id);
+       
         $entradasevento = EntradasEvento::where('evento_id', $transaccione->evento_id)->where('user_id', $transaccione->user_id)->get();
         
         if($entradasevento->count()>0 )
@@ -92,22 +94,38 @@ class TransaccioneController extends Controller
                     
                     $transaccione = Transaccione::find($id);
 
-                    if($transaccione->status='normal')
+                    if($transaccione->status='done' && $transaccione->status_detail=='normal')
                     {
-                        
+                        $compra=Compra::where('id',$transaccione->compra_id)->update([
+                            'estado_id'=>2
+                        ]);
+
                         EntradasEvento::create([
-                            'estado'=>1, 
+                            'tipo_entrada_id'=>1,                            
                             'evento_id' => $transaccione->evento_id, 
-                            'user_id' => $transaccione->user_id, 
-                            'fecha_compra' => now()->format('Y-m-d')]);
+                            'user_id' => $transaccione->user_id]);
 
                         return Redirect::route('MisEntradas.index')->with('success', 'Entrada comprada.');
                         
+                    }else{
+                        if($transaccione->status=='marked-paid-by-receiver' || $transaccione->status=='marked-as-abuse' || $transaccione->status=='marked-paid-by-receiver')
+                        {
+                            
+                            $compra=Compra::where('id',$transaccione->compra_id)->update([
+                                'estado_id'=>4
+                            ]);
+                        }
+
+
                     }
                 }
             }
+
+            $transaccione = Transaccione::find($id);
+
+           
         
-            return Redirect::route ('transacciones', compact('transaccione'));
+            return Redirect::route ('transacciones.index')->with('success', 'La transacción tiene estado '. $transaccione->status);
         }
     
     }
@@ -119,7 +137,15 @@ class TransaccioneController extends Controller
     {
         $transaccione = Transaccione::find($id);
 
-        return view('admin.transaccione.edit', compact('transaccione'));
+       return view('admin.transaccione.edit', compact('transaccione'));
+       
+    }
+
+    public function comprobante($id): View
+    {
+      $t = Transaccione::where('compra_id',$id)->get();
+       
+      return view('admin.transaccione.comprobante', compact('t'));
     }
 
     /**
