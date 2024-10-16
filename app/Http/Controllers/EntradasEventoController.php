@@ -169,10 +169,6 @@ class EntradasEventoController extends Controller
         // //$path = getenv('IMAGE_URL')."/img/logo.png";
         // $png = QrCode::format('png')->merge( .17, true)->size(300)->errorCorrection('H')->generate("dddd");
         // $png = base64_encode($png);
-
-        $pdf = Pdf::loadView('admin.participacione.diploma');
-        return $pdf->stream('entrada.pdf');
-
      
          $entradasEvento = EntradasEvento::find($id);
 

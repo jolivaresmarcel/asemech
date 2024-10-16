@@ -14,6 +14,8 @@ use App\Http\Controllers\CertificadoController;
 use App\Http\Controllers\MisCertificadoController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\TiposCompraController;
+use App\Http\Controllers\DiplomaController;
+use App\Http\Controllers\DiplomasUsuarioController;
 use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +47,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/diploma', function () {
         return view('admin.participacione.diploma');
     })->middleware(['auth', 'verified'])->name('dashboard');
+
+    Route::get('DownloadDiploma/{id}', [DiplomasUsuarioController::class, 'DownloadDiploma']);
+
+    Route::resource('diplomas', DiplomaController::class);
+    Route::get('CrearNomina/{id}', [DiplomaController::class, 'CrearNomina']);
+    Route::resource('diplomas-usuarios', DiplomasUsuarioController::class);
+    Route::get('publicar/{id}', [DiplomasUsuarioController::class, 'publicar']);
 
 });
 

@@ -4,20 +4,14 @@
     <meta charset="UTF-8" />
     <title>Diploma</title>
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+    <link href="font/font.css" rel="stylesheet">
   <style type="text/css">
 
-@font-face {
-  font-family: 'Great Vibes';
-  font-style: normal;
-  font-weight: normal;
-  src: url(https://fonts.googleapis.com/css?family=Homemade+Apple) format('truetype');
-}
 
 
 body {
   margin: 0;
-  background-image: url(img/1.png);
+  background-image: url(storage/{{$diploma->fondo}});
   background-size: 100%;
   /* background-image: url(https://1.bp.blogspot.com/-Hw5sPqZO3X0/TgeaXT3EHaI/AAAAAAAAA08/ZRRsuob-WDI/s1600/futurama-colash-1024x768-620.jpg); */
   /* background-image: url(http://images2.fanpop.com/images/photos/3300000/Futurama-futurama-3305641-1024-768.jpg);*/
@@ -42,20 +36,20 @@ body {
 
 h1 {
   position: relative;
-  font-size: 65px;
-  font-family: 'Great Vibes', cursive;
+  font-size: 45px;
+  font-family: 'Homemade Apple', cursive;
   text-align: center;
-  top: 180px;
+  top: 190px;
   
 }
-/* 
+
 h2 {
   position: relative;
   font-size: 30px;
   font-family: 'Verdana';
   text-align: center;
-  top: 1px;
-} */
+  top: 180px;
+}
 
 p {
   position: relative;
@@ -97,9 +91,9 @@ ul {
 #firma {
   position: relative;
   font-family: 'Homemade Apple', cursive;
-  line-height: 20px;
-  top: 50px;
-  left: 320px;
+  
+  top: -160px;
+  left: 850px;
 }
   </style>
   </head>
@@ -118,12 +112,13 @@ ul {
   
 
     <div id="pagina">
-      <h1>dddd</h1>
+      <h1>{{$diplomasUsuario->user->name}}</h1>
      
   
-      <p>djsfjlksjdflkjsdlkjflksdjlkfjsd lf lksjd lkfjlskdjf lksjl kj</p>
+      <p>Asistencia {{$diplomasUsuario->asistencia}} nota {{$diplomasUsuario->nota}}</p>
   
 
+      <img id="firma" src="img/logo.png"> 
    
       
     </div>

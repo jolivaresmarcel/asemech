@@ -359,6 +359,14 @@ return [
             'can' => 'admin.ver'
         ],
         [
+            'text' => 'Diplomas',
+            'url' => 'diplomas',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'admin.ver'
+        ],
+        ['header' => 'ADMINISTRAR COMPRAS',
+        'can' => 'admin.ver'],
+        [
             'text' => 'Compras',
             'url' => 'compras',
             'icon' => 'far fa-fw fa-file',
