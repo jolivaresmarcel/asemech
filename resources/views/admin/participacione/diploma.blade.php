@@ -2,26 +2,28 @@
 <html lang="en">
     <head>
     <meta charset="UTF-8" />
-    <title>Diploma Fry</title>
+    <title>Diploma</title>
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
   <style>
     body {
   margin: 0;
-  /*background-image: url(https://1.bp.blogspot.com/-Hw5sPqZO3X0/TgeaXT3EHaI/AAAAAAAAA08/ZRRsuob-WDI/s1600/futurama-colash-1024x768-620.jpg);*/
+
+  /* background-image: url(https://1.bp.blogspot.com/-Hw5sPqZO3X0/TgeaXT3EHaI/AAAAAAAAA08/ZRRsuob-WDI/s1600/futurama-colash-1024x768-620.jpg); */
   /* background-image: url(http://images2.fanpop.com/images/photos/3300000/Futurama-futurama-3305641-1024-768.jpg);*/
   /*background-image: url(https://wasabibd.github.io/test-repo/images/Futurama.png);*/
   background-size: cover;
   background-position: center;
-  background-color: black;
+  background-color: while;
  /* background-repeat: repeat-y;*/
 }
 
 #pagina {
   position: relative;
-  background-image: url(https://wasabibd.github.io/test-repo/images/diploma.png);
+  background-image: url(http://asemech-dashboard.test/vendor/adminlte/dist/img/icono.png);
   /*750x609px*/
-  filter: sepia(0.8);
+  /* filter: brightness(60%); sepia(0.8); */
+  opacity: 0.5; 
   margin: auto;
   width: 750px;
   height: 609px;
@@ -34,6 +36,7 @@ h1 {
   font-family: 'Great Vibes', cursive;
   text-align: center;
   top: 90px;
+  
 }
 
 h2 {
@@ -52,6 +55,7 @@ p {
 }
 
 .tipo {
+  opacity: none;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -89,7 +93,7 @@ ul {
   
   <body>
     <div id="pagina">
-  
+    <div style="opacity: none;">
       <h1>Diploma certificado</h1>
       <h2>Trabajador reconocido de Planet Express</h2>
   
@@ -109,6 +113,7 @@ ul {
       </div>
   
       <img id="sello" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Futurama_Planet_Express.svg/220px-Futurama_Planet_Express.svg.png">
+    </div>
     </div>
   </body>
   

@@ -122,11 +122,15 @@ class ComprarEventoController extends Controller
         "amount" => $evento->valor,
         "currency" => "CLP",
         "subject" => "Cobro de prueba",
-        "return_url"=>"http://asemech.test/transacciones/".$transaccion->id,
-        "cancel_url"=>"http://asemech.test/transacciones/".$transaccion->id,
-        "picture_url"=>"http://asemech.test/".$evento->foto
+        //Request::root().
+        // "return_url"=>"http://asemech.test/transacciones/".$transaccion->id,
+        // "cancel_url"=>"http://asemech.test/transacciones/".$transaccion->id,
+        // "picture_url"=>"http://asemech.test/".$evento->foto
+        "return_url"=>request()->root()."/transacciones/".$transaccion->id,
+        "cancel_url"=>request()->root()."/transacciones/".$transaccion->id,
+        "picture_url"=>request()->root()."/transacciones/".$evento->foto
         );
-        
+
         curl_setopt_array($curl, [
         CURLOPT_HTTPHEADER => [
             "Content-Type: application/json",
