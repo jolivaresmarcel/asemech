@@ -29,7 +29,7 @@ body {
   /* filter: brightness(60%); sepia(0.8); */
   /* opacity: 0.5;  */
   margin: auto;
-  width: 750px;
+  width: 100%;
   height: 609px;
   z-index: 1;
 }
@@ -39,7 +39,7 @@ h1 {
   font-size: 45px;
   font-family: 'Homemade Apple', cursive;
   text-align: center;
-  top: 190px;
+  top: 250px;
   
 }
 
@@ -52,10 +52,11 @@ h2 {
 }
 
 p {
+  font-size: 18px;
   position: relative;
   text-align: center;
   margin: 0px 100px 0px 100px;
-  top: 175px;
+  top: 250px;
 }
 
 .tipo {
@@ -112,10 +113,19 @@ ul {
   
 
     <div id="pagina">
+      <p>
+        La Asociación de Estudiantes de Medicina de Chile (ASEMECH) se complace de otorgar el siguiente certificado en calidad de ‘’ASISTEN TE APROBADO’’ a 
+
+      </p>
+
       <h1>{{$diplomasUsuario->user->name}}</h1>
      
   
-      <p>Asistencia {{$diplomasUsuario->asistencia}} nota {{$diplomasUsuario->nota}}</p>
+      <p>Con RUT: {{$diplomasUsuario->user->rut}} , Durante la actividad del "{{$diplomasUsuario->evento->titulo}}"
+        Realizado los días 28, 29, 30 de Octubre del 2024, donde aprueba con nota "{{$diplomasUsuario->nota}}" en escala de 1 a 7 y con porcentaje de asistencia del "{{$diplomasUsuario->asistencia}}"%,  
+        <br><br>
+        Esta actividad contó con 25 Horas académicas, es independiente de la malla oficial de cualquier casa de estudio y no es requisito de titulación. 
+        Asistencia nota </p>
   
 
       <img id="firma" src="img/logo.png"> 
