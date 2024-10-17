@@ -108,6 +108,26 @@ class EventoController extends Controller
         
         $request->validated();
 
+        if($request->foto==null)
+        {
+
+                
+            $evento->update([
+                'titulo' => $request->titulo, 
+                'descripcion' => $request->descripcion, 
+                'terminos'  => $request-> terminos,            
+                'inicio'  => $request-> inicio, 
+                'termino'  => $request-> termino, 
+                'cupos'  => $request->cupos,
+                'cupos_disponibles' =>$request->cupos_disponibles, 
+                'publicacion' => $request->publicacion, 
+                'lugar' => $request->lugar, 
+                'valor'  => $request-> valor
+            ]);
+            }
+        else{
+
+        
         $validatedData = $request->validate([
          'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
@@ -128,7 +148,7 @@ class EventoController extends Controller
             'lugar' => $request->lugar, 
             'valor'  => $request-> valor
         ]);
-
+     }
         return Redirect::route('eventos.index')
             ->with('success', 'Operación realizada.');
     }

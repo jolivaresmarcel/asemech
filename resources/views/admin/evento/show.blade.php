@@ -172,7 +172,7 @@
                                                 <td>
                                                     <form action="{{ route('actividades.destroy', $actividade->id) }}" method="POST">
                                                        
-                                                        <a class="btn btn-sm btn-success" href="{{ route('actividades.edit', $actividade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                        {{-- <a class="btn btn-sm btn-success" href="{{ route('actividades.edit', $actividade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a> --}}
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Seguro que deseas eliminar?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
