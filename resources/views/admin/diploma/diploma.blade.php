@@ -30,7 +30,7 @@ body {
   /* opacity: 0.5;  */
   margin: auto;
   width: 100%;
-  height: 609px;
+  height: 550px;
   z-index: 1;
 }
 
@@ -38,6 +38,7 @@ h1 {
   position: relative;
   font-size: 45px;
   font-family: 'Homemade Apple', cursive;
+  font-style:italic;
   text-align: center;
   top: 250px;
   
@@ -114,22 +115,22 @@ ul {
 
     <div id="pagina">
       <p>
-        La Asociación de Estudiantes de Medicina de Chile (ASEMECH) se complace de otorgar el siguiente certificado en calidad de ‘’ASISTEN TE APROBADO’’ a 
+       La <strong>Asociación de Estudiantes de Medicina de Chile (ASEMECH) </strong> complace de otorgar el siguiente certificado en calidad de <strong> "ASISTENTE APROBADO"</strong> a:
 
       </p>
 
       <h1>{{$diplomasUsuario->user->name}}</h1>
      
   
-      <p>Con RUT: {{$diplomasUsuario->user->rut}} , Durante la actividad del "{{$diplomasUsuario->evento->titulo}}"
-        Realizado los días 28, 29, 30 de Octubre del 2024, donde aprueba con nota "{{$diplomasUsuario->nota}}" en escala de 1 a 7 y con porcentaje de asistencia del "{{$diplomasUsuario->asistencia}}"%,  
+      <p>Con RUT: {{$diplomasUsuario->user->rut}}, durante la actividad <strong>"{{strtoupper($diplomasUsuario->evento->titulo)}}" </strong>, 
+        realizada los días 28, 29, 30 de Octubre del 2024, donde aprueba con nota <strong>{{$diplomasUsuario->nota}} </strong>  en escala de 1 a 7 y con porcentaje de asistencia del <strong>{{$diplomasUsuario->asistencia}}%</strong>,  
         <br><br>
-        Esta actividad contó con 25 Horas académicas, es independiente de la malla oficial de cualquier casa de estudio y no es requisito de titulación. 
-        Asistencia nota </p>
+        Esta actividad contó con 25 horas académicas, es independiente de la malla oficial de cualquier casa de estudio y no es requisito de titulación. 
+      </p>
   
 
-      <img id="firma" src="img/logo.png"> 
-   
+      {{-- <img id="firma" src="img/logo.png"> 
+    --}}
       
     </div>
  

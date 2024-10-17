@@ -40,7 +40,7 @@ class TiposEntradaController extends Controller
         TiposEntrada::create($request->validated());
 
         return Redirect::route('tipos-entradas.index')
-            ->with('success', 'TiposEntrada created successfully.');
+            ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -71,7 +71,7 @@ class TiposEntradaController extends Controller
         $tiposEntrada->update($request->validated());
 
         return Redirect::route('tipos-entradas.index')
-            ->with('success', 'TiposEntrada updated successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class TiposEntradaController extends Controller
         TiposEntrada::find($id)->delete();
 
         return Redirect::route('tipos-entradas.index')
-            ->with('success', 'TiposEntrada deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 }

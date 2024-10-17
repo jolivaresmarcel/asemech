@@ -25,7 +25,6 @@ class EventoRequest extends FormRequest
 			'titulo' => 'required|string',
 			'descripcion' => 'required',
 			'terminos' => 'required',
-			'foto' => 'required',
 			'inicio' => 'required',
 			'termino' => 'required',
 			'cupos' => 'required',

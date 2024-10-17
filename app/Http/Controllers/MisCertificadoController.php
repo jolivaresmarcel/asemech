@@ -18,7 +18,10 @@ class MisCertificadoController extends Controller
      */
     public function index(Request $request): View
     {
-        $certificados = Certificado::paginate();
+
+        $user=Auth::user(); 
+
+        $certificados = Certificado::where('user_id', $user->id)->paginate();
         $error="";
 
         return view('users.miscertificado.index', compact('certificados','error'))
@@ -63,7 +66,7 @@ class MisCertificadoController extends Controller
             'archivo'=>$file]);
        
         return Redirect::route('miscertificados.index')
-            ->with('success', 'Certificado created successfully.');
+            ->with('success', 'Operación realizada');
     }
 
     /**
@@ -137,7 +140,7 @@ class MisCertificadoController extends Controller
 
 
         return Redirect::route('miscertificados.index')
-            ->with('success', 'Certificado updated successfully');
+            ->with('success', 'Operación realizada');
 
        
     }
@@ -147,6 +150,6 @@ class MisCertificadoController extends Controller
         Certificado::find($id)->delete();
 
         return Redirect::route('miscertificados.index')
-            ->with('success', 'Certificado deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 }

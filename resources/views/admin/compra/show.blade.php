@@ -5,16 +5,17 @@
 @endsection
 
 @section('content')
+<br>
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="card-header" style="background-color: #001a3b; color:rgb(255, 255, 255); display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title">{{ __('Show') }} Compra</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('compras.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-light btn-sm" href="{{ route('compras.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 

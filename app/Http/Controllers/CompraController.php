@@ -40,7 +40,7 @@ class CompraController extends Controller
         Compra::create($request->validated());
 
         return Redirect::route('compras.index')
-            ->with('success', 'Compra created successfully.');
+            ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -71,7 +71,7 @@ class CompraController extends Controller
         $compra->update($request->validated());
 
         return Redirect::route('compras.index')
-            ->with('success', 'Compra updated successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class CompraController extends Controller
         Compra::find($id)->delete();
 
         return Redirect::route('compras.index')
-            ->with('success', 'Compra deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 }

@@ -5,11 +5,12 @@
 @endsection
 
 @section('content')
+<br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #001a3b; color:rgb(255, 255, 255);">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
@@ -17,7 +18,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('diplomas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('diplomas.create') }}" class="btn btn-light btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -58,10 +59,10 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('¿Esta seguro que desea eliminar el diploma?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                    @if($diploma->es_borrable==0)
-                                                    <a class="btn btn-sm btn-secondary " href="{{'CrearNomina/'.$diploma->id}}">Crear nomina para certificado</a>
+                                                    <a class="btn btn-sm btn-secondary" href="{{'CrearNomina/'.$diploma->id}}"><i class="fa fa-fw far fa-edit"></i> Crear nómina para certificado</a>
                                                     @else
-                                                    <a class="btn btn-sm btn-secondary " href="{{'CrearNomina/'.$diploma->id}}">Refrescar nomina</a>
-                                                    <a class="btn btn-sm btn-info " href="diplomas-usuarios">Ver nomina</a>
+                                                    <a class="btn btn-sm btn-secondary" href="{{'CrearNomina/'.$diploma->id}}"><i class="fa fa-fw far fa-edit"></i> Refrescar nómina</a>
+                                                    <a class="btn btn-sm btn-info" href="{{'ListarNomina/'.$diploma->id}}"><i class="fa fa-fw far fa-folder-open"></i> Ver nómina</a>
                                                     @endif
                                                 </form>
                                             </td>

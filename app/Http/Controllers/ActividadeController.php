@@ -45,7 +45,7 @@ class ActividadeController extends Controller
         $evento = Evento::find($id);
 
          return view('admin.evento.show', compact('evento','actividades'))
-             ->with('success', 'Actividad Creada.');
+             ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -80,7 +80,7 @@ class ActividadeController extends Controller
         $evento = Evento::find($id);
 
          return view('admin.evento.show', compact('evento','actividades'))
-             ->with('success', 'Actividad Creada.');
+             ->with('success', 'Operación realizada.');
 
 
        
@@ -99,7 +99,7 @@ class ActividadeController extends Controller
         $evento = Evento::find($id);
 
          return view('admin.evento.show', compact('evento','actividades'))
-             ->with('success', 'Actividad Creada.');
+             ->with('success', 'Operación realizada.');
 
         // return Redirect::route('actividades.index')
         //     ->with('success', 'Actividade deleted successfully');

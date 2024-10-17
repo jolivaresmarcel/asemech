@@ -1,25 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Certificado;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\CertificadoRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class CertificadoController extends Controller
+class MisCertificadoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): View
     {
-        $certificados = Certificado::paginate();
 
-        return view('admin.certificado.index', compact('certificados'))
+        $user=Auth::user(); 
+
+        $certificados = Certificado::where('user_id', $user->id)->paginate();
+        $error="";
+
+        return view('users.miscertificado.index', compact('certificados','error'))
             ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
     }
 
@@ -29,9 +34,9 @@ class CertificadoController extends Controller
     public function create(): View
     {
         $certificado = new Certificado();
-        $user = User::all();
+        $user=Auth::user();   
 
-        return view('admin.certificado.create', compact('certificado', 'user'));
+        return view('users.miscertificado.create', compact('certificado', 'user'));
     }
 
     /**
@@ -59,9 +64,9 @@ class CertificadoController extends Controller
             'es_valido'=> $request-> es_valido, 
             'fecha_caducidad' => $request->fecha_caducidad, 
             'archivo'=>$file]);
-
-        return Redirect::route('certificados.index')
-            ->with('success', 'Operación realizada.');
+       
+        return Redirect::route('miscertificados.index')
+            ->with('success', 'Operación realizada');
     }
 
     /**
@@ -71,7 +76,7 @@ class CertificadoController extends Controller
     {
         $certificado = Certificado::find($id);
 
-        return view('admin.certificado.show', compact('certificado'));
+        return view('users.miscertificado.show', compact('certificado'));
     }
 
     /**
@@ -82,7 +87,7 @@ class CertificadoController extends Controller
         $certificado = Certificado::find($id);
         $user = User::all();
 
-        return view('admin.certificado.edit', compact('certificado','user'));
+        return view('users.miscertificado.edit', compact('certificado','user'));
     }
 
     /**
@@ -134,7 +139,7 @@ class CertificadoController extends Controller
    
 
 
-        return Redirect::route('certificados.index')
+        return Redirect::route('miscertificados.index')
             ->with('success', 'Operación realizada');
 
        
@@ -144,7 +149,7 @@ class CertificadoController extends Controller
     {
         Certificado::find($id)->delete();
 
-        return Redirect::route('certificados.index')
+        return Redirect::route('miscertificados.index')
             ->with('success', 'Operación realizada');
     }
 }

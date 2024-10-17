@@ -150,7 +150,7 @@
             <x-input-error :messages="$errors->get('universidad')" class="mt-2" />
         </div>
         <div class="mt-4">
-            <x-input-label for="anio" :value="__('Años')" />
+            <x-input-label for="anio" :value="__('Año que cursa')" />
             <x-text-input id="anio" class="block mt-1 w-full" type="text" name="anio" :value="old('anio')" required autocomplete="anio" />
             <x-input-error :messages="$errors->get('anio')" class="mt-2" />
         </div>

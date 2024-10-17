@@ -5,19 +5,20 @@
 @endsection
 
 @section('content')
+<br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                   <div class="card-header" style="background-color: #001a3b; color:rgb(255, 255, 255);">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Certificados') }}
+                                {{ __('Mis Certificados') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('miscertificados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('miscertificados.create') }}" class="btn btn-light btn-sm float-right"  data-placement="left">
                                   {{ __('Agregar nuevo certificado') }}
                                 </a>
                               </div>
@@ -59,15 +60,15 @@
                                            
                                                     @if($certificado->es_valido == 1)
                                                         @if($certificado->fecha_caducidad>=now())
-                                                            Valido  
+                                                            Válido  
                                                         @else
-                                                            Cadudado
+                                                            Caducado
                                                         @endif    
                                                     @else
                                                         @if($certificado->es_valido == -1)
                                                             Por validar    
                                                         @else
-                                                            Invalido
+                                                            Inválido
                                                         @endif    
                                                     @endif
                                             
@@ -76,7 +77,7 @@
 
 										                                            <td>
                                                 <form action="{{ route('miscertificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
+                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fas fa-download"></i>Descargar</a>
                                                     @if($certificado->es_valido == -1)
                                                                                                         
                                                         @csrf

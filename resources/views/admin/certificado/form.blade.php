@@ -16,7 +16,7 @@
             {!! $errors->first('user_id', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="es_valido" class="form-label">{{ __('Es Valido') }}</label>
+            <label for="es_valido" class="form-label">{{ __('Es Válido') }}</label>
             {{-- <input type="text" name="es_valido" class="form-control @error('es_valido') is-invalid @enderror" value="{{ old('es_valido', $certificado?->es_valido) }}" id="es_valido" placeholder="Es Valido"> --}}           
             <select name="es_valido" id="es_valido" class="form-control">
                 <option value="" selected>Seleccionar una opción</option>

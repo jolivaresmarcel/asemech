@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DiplomaRequest;
 use App\Models\DiplomasUsuario;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,10 +20,11 @@ class DiplomasUsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request, Diploma $diploma): View   
     {
+    
         $diplomasUsuarios = DiplomasUsuario::paginate();
-       
+
         if($diplomasUsuarios->count()>0)
             $id=$diplomasUsuarios[0]->diploma_id;
         else
@@ -48,7 +50,7 @@ class DiplomasUsuarioController extends Controller
         DiplomasUsuario::create($request->validated());
 
         return Redirect::route('diplomas-usuarios.index')
-            ->with('success', 'DiplomasUsuario created successfully.');
+            ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -79,7 +81,7 @@ class DiplomasUsuarioController extends Controller
         $diplomasUsuario->update($request->validated());
 
         return Redirect::route('diplomas-usuarios.index')
-            ->with('success', 'DiplomasUsuario updated successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function publicar($id): RedirectResponse
@@ -96,7 +98,7 @@ class DiplomasUsuarioController extends Controller
         DiplomasUsuario::find($id)->delete();
 
         return Redirect::route('diplomas-usuarios.index')
-            ->with('success', 'DiplomasUsuario deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function DownloadDiploma($id)
@@ -109,5 +111,20 @@ class DiplomasUsuarioController extends Controller
         return $pdf->stream('entrada.pdf');
 
     }
+
+    public function ListarNomina($a): View   
+    {
+    
+        $diplomasUsuarios = DiplomasUsuario::where('diploma_id', $a)->paginate();
+
+        if($diplomasUsuarios->count()>0)
+            $id=$diplomasUsuarios[0]->diploma_id;
+        else
+            $id=0;
+
+        return view('admin.diplomas-usuario.index', compact('diplomasUsuarios', 'id'));
+         //   ->with('i', ($request->input('page', 1) - 1) * $diplomasUsuarios->perPage());
+    }
+
 
 }

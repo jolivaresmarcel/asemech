@@ -69,7 +69,7 @@ class EventoController extends Controller
         ]);
 
         return Redirect::route('eventos.index')
-            ->with('success', 'El evento fue creado.');
+            ->with('success', 'Operación realizada.');
 
 
     }
@@ -130,7 +130,7 @@ class EventoController extends Controller
         ]);
 
         return Redirect::route('eventos.index')
-            ->with('success', 'El evento fue actualizado.');
+            ->with('success', 'Operación realizada.');
     }
 
     public function destroy($id): RedirectResponse
@@ -138,7 +138,7 @@ class EventoController extends Controller
         Evento::find($id)->delete();
 
         return Redirect::route('eventos.index')
-            ->with('success', 'Evento deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 
     // public function generate_UUID(Request $request)

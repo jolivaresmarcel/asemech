@@ -42,7 +42,7 @@ class ParticipacioneController extends Controller
         Participacione::create($request->validated());
 
         return Redirect::route('admin.participaciones.index')
-            ->with('success', 'Participacione created successfully.');
+            ->with('success', 'Operación realizada');
     }
 
     /**

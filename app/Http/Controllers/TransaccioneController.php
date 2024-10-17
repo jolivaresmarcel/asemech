@@ -18,7 +18,11 @@ class TransaccioneController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * 
      */
+
+   
     public function index(Request $request): View
     {
         $transacciones = Transaccione::paginate();
@@ -45,7 +49,7 @@ class TransaccioneController extends Controller
         Transaccione::create($request->validated());
 
         return Redirect::route('transacciones.index')
-            ->with('success', 'Transaccione created successfully.');
+            ->with('success', 'Operación realizada');
     }
 
     /**
@@ -156,7 +160,7 @@ class TransaccioneController extends Controller
         $transaccione->update($request->validated());
 
         return Redirect::route('transacciones.index')
-            ->with('success', 'Transaccione updated successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -164,6 +168,6 @@ class TransaccioneController extends Controller
         Transaccione::find($id)->delete();
 
         return Redirect::route('transacciones.index')
-            ->with('success', 'Transaccione deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 }

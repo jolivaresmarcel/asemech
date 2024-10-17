@@ -320,19 +320,25 @@ return [
         [
             'text' => 'Eventos',
             'url' => 'ComprarEventos',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fa-calendar-alt',
             'can' => 'user.ver'
         ],
         [
             'text' => 'Mis Entradas',
             'url' => 'MisEntradas',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw  fas fa-id-card',
             'can' => 'user.ver'
         ],
         [
             'text' => 'Mis documentos',
             'url' => 'miscertificados',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw far fa-file-alt',
+            'can' => 'user.ver'
+        ],
+        [
+            'text' => 'Mis diplomas',
+            'url' => 'misdiplomas',
+            'icon' => 'far fa-fw  fas fa-award',
             'can' => 'user.ver'
         ],
       
@@ -342,26 +348,26 @@ return [
         [
             'text' => 'Eventos',
             'url' => 'eventos',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fa-calendar-alt',
             'can' => 'admin.ver'
         ],
         [
             'text' => 'Entradas',
             'url' => 'entradas-eventos',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fas fa-id-card',
             'can' => 'admin.ver'
 
         ],
         [
             'text' => 'Certificados',
             'url' => 'certificados',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fas fa-passport',
             'can' => 'admin.ver'
         ],
         [
             'text' => 'Diplomas',
             'url' => 'diplomas',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fas fa-award',
             'can' => 'admin.ver'
         ],
         ['header' => 'ADMINISTRAR COMPRAS',
@@ -369,13 +375,13 @@ return [
         [
             'text' => 'Compras',
             'url' => 'compras',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fas fa-money-check-alt',
             'can' => 'admin.ver'
         ],
         [
             'text' => 'Transacciones Khipu',
             'url' => 'transacciones',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'far fa-fw fas fa-donate',
             'can' => 'admin.ver'
         ],
 

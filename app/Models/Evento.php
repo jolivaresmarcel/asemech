@@ -68,13 +68,7 @@ class Evento extends Model
         return $this->hasMany(\App\Models\EntradasEvento::class, 'id', 'evento_id');
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pagos()
-    {
-        return $this->hasMany(\App\Models\Pago::class, 'id', 'evento_id');
-    }
+      
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

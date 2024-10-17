@@ -62,7 +62,7 @@ class DiplomaController extends Controller
         );
 
         return Redirect::route('diplomas.index')
-            ->with('success', 'Diploma creado.');
+            ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -96,7 +96,7 @@ class DiplomaController extends Controller
         $diploma->update($request->validated());
 
         return Redirect::route('diplomas.index')
-            ->with('success', 'Diploma actualizado');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -104,7 +104,7 @@ class DiplomaController extends Controller
         Diploma::find($id)->delete();
 
         return Redirect::route('diplomas.index')
-            ->with('success', 'Diploma eliminado');
+            ->with('success', 'Operación realizada');
     }
 
    
@@ -147,12 +147,15 @@ class DiplomaController extends Controller
                 [
                     'es_borrable'=>1
                 ]);
-            
-                return Redirect::route('diplomas-usuarios.index')
-                ->with('success', 'Nomina creada.');
+
+                return Redirect('ListarNomina/'.$diploma->id)
+                ->with('success', 'Se actualiza nómina.');
+
+                            
         }else{
-            return Redirect::route('diplomas-usuarios.index')
-            ->with('success', 'No se encontraron usuarios para generar nomina.');
+            return Redirect::route('diplomas-usuarios.index', compact('diploma'))
+            ->with('success', 'No se encontraron usuarios para generar nómina.');
+        
         }
     }
 

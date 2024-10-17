@@ -65,7 +65,7 @@ class EntradasEventoController extends Controller
          $eventos->update(['cupos_disponibles' =>$disponible]);
 
          return Redirect::route('entradas-eventos.index')
-             ->with('success', 'Entrada creada.');
+             ->with('success', 'Operación realizada');
 
 
         
@@ -109,7 +109,7 @@ class EntradasEventoController extends Controller
         $entradasEvento->update($request->validated());
 
         return Redirect::route('entradas-eventos.index')
-            ->with('success', 'Entrada fue actualizada');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -126,7 +126,7 @@ class EntradasEventoController extends Controller
         $eventos->update(['cupos_disponibles' =>$disponible]);
         
         return Redirect::route('entradas-eventos.index')
-            ->with('success', 'La entrada fue eliminada');
+            ->with('success', 'Operación realizada');
     }
 
     public function ValidaEntrada($id):view

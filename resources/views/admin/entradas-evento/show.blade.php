@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<br>
     <section class="content container-fluid">
         <div class="float-right">
             <a class="btn btn-primary btn-sm" href="{{ route('entradas-eventos.index') }}"> {{ __('Back') }}</a>
@@ -12,7 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="card-header" style="background-color: #001a3b; color:rgb(255, 255, 255); display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
                             <span class="card-title">Datos de entrada</span>
                         </div>

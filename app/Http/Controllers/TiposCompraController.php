@@ -40,7 +40,7 @@ class TiposCompraController extends Controller
         TiposCompra::create($request->validated());
 
         return Redirect::route('tipos-compras.index')
-            ->with('success', 'TiposCompra created successfully.');
+            ->with('success', 'Operación realizada.');
     }
 
     /**
@@ -71,7 +71,7 @@ class TiposCompraController extends Controller
         $tiposCompra->update($request->validated());
 
         return Redirect::route('tipos-compras.index')
-            ->with('success', 'TiposCompra updated successfully');
+            ->with('success', 'Operación realizada');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +79,6 @@ class TiposCompraController extends Controller
         TiposCompra::find($id)->delete();
 
         return Redirect::route('tipos-compras.index')
-            ->with('success', 'TiposCompra deleted successfully');
+            ->with('success', 'Operación realizada');
     }
 }
