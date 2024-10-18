@@ -17,10 +17,10 @@ use App\Http\Controllers\TiposCompraController;
 use App\Http\Controllers\DiplomaController;
 use App\Http\Controllers\DiplomasUsuarioController;
 
-use App\Http\Controllers\User\ComprarEventoController;
-use App\Http\Controllers\User\MisCertificadoController;
-use App\Http\Controllers\User\MisEntradasController;
-use App\Http\Controllers\User\MisDiplomasController;
+use App\Http\Controllers\ComprarEventoController;
+use App\Http\Controllers\MisCertificadoController;
+use App\Http\Controllers\MisEntradasController;
+use App\Http\Controllers\MisDiplomasController;
 use App\Models\TiposEntrada;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified', 'can:admin.ver'])->group(function(){
     Route::get('comprobante/{id}', [TransaccioneController::class,'comprobante'])->middleware(['auth', 'verified']);
     Route::get('/diploma', function () {
         return view('admin.participacione.diploma');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    })->middleware(['auth', 'verified']);
    
     Route::resource('diplomas', DiplomaController::class);
     Route::get('CrearNomina/{id}', [DiplomaController::class, 'CrearNomina']);
