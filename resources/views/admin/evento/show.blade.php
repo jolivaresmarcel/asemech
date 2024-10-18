@@ -31,7 +31,7 @@
                     </div>
                     <div class="row ml-0 mr-0">                       
                          <div class="card-body bg-white col-md-6">
-                            <img width="100%" src="/{{ $evento->foto }}" />
+                            <img width="100%" src="/storage/{{ $evento->foto }}" />
                         </div>
                         <div class="card-body bg-white col-md-6">
                                                              
