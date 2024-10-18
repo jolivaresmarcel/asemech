@@ -60,7 +60,7 @@
     @foreach ($eventos as $eventos)
     <div class="m-1">
     <div class="card" style="width: 18rem;">
-    <img src="/{{ $eventos->foto }}" class="card-img-top" alt="...">
+    <img src="/storage/{{ $eventos->foto }}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{ $eventos->titulo }}</h5>
       <p class="card-text">{{ $eventos->descripcion }}</p>
