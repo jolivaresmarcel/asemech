@@ -24,7 +24,7 @@ class MisCertificadoController extends Controller
         $certificados = Certificado::where('user_id', $user->id)->paginate();
         $error="";
 
-        return view('users.miscertificado.index', compact('certificados','error'))
+        return view('users.MisCertificado.index', compact('certificados','error'))
             ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
     }
 
@@ -36,7 +36,7 @@ class MisCertificadoController extends Controller
         $certificado = new Certificado();
         $user=Auth::user();   
 
-        return view('users.miscertificado.create', compact('certificado', 'user'));
+        return view('users.MisCertificado.create', compact('certificado', 'user'));
     }
 
     /**
@@ -76,7 +76,7 @@ class MisCertificadoController extends Controller
     {
         $certificado = Certificado::find($id);
 
-        return view('users.miscertificado.show', compact('certificado'));
+        return view('users.MisCertificado.show', compact('certificado'));
     }
 
     /**
@@ -87,7 +87,7 @@ class MisCertificadoController extends Controller
         $certificado = Certificado::find($id);
         $user = User::all();
 
-        return view('users.miscertificado.edit', compact('certificado','user'));
+        return view('users.MisCertificado.edit', compact('certificado','user'));
     }
 
     /**

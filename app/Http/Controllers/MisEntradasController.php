@@ -42,7 +42,7 @@ class MisEntradasController extends Controller
 
         $entradasEventos = EntradasEvento::where('user_id', $user->id)->paginate();
         
-        return view('Users.MisEntradas.index', compact('entradasEventos'))
+        return view('users.MisEntradas.index', compact('entradasEventos'))
             ->with('i', ($request->input('page', 1) - 1) * $entradasEventos->perPage());
         // }else{
         //     return('Falta ingresar certificado de alumno regular');

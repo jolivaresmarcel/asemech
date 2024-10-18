@@ -25,7 +25,7 @@ class MisDiplomasController extends Controller
         $user=Auth::user(); 
         $diplomasUsuarios = DiplomasUsuario::where('user_id', $user->id)->paginate();
 
-        return view('users.misdiplomas.index', compact('diplomasUsuarios'))
+        return view('users.MisDiplomas.index', compact('diplomasUsuarios'))
             ->with('i', ($request->input('page', 1) - 1) * $diplomasUsuarios->perPage());
     }
 

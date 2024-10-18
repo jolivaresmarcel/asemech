@@ -46,7 +46,7 @@ class ComprarEventoController extends Controller
         }else{
             $error="Para ver los eventos y comprar la entrada debe tener un certificado válido, si aún no lo haz ingresado, hazlo a continuación";
             $certificados = Certificado::where('user_id', $user->id)->get();
-            return view('users.miscertificado.index', compact('certificados','error'));
+            return view('users.MisCertificado.index', compact('certificados','error'));
             
             // ->with('i', ($request->input('page', 1) - 1) * $certificados->perPage());
             
