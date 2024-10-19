@@ -18,7 +18,7 @@
                         <form method="POST" action="{{ route('miscertificados.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('users.miscertificado.form')
+                            @include('users.MisCertificado.form')
 
                         </form>
                     </div>

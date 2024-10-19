@@ -77,7 +77,7 @@
 
 										                                            <td>
                                                 <form action="{{ route('miscertificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fas fa-download"></i>Descargar</a>
+                                                    <a class="btn btn-sm btn-primary " href="/storage/{{ $certificado->archivo }}"><i class="fa fa-fw fas fa-download"></i>Descargar</a>
                                                     @if($certificado->es_valido == -1)
                                                                                                         
                                                         @csrf

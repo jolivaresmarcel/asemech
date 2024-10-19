@@ -14,7 +14,7 @@
    <table style="margin:10px; margin-left: 120px; width: 100%;">
     <tr>
         <td style="width: 20%">
-            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->generate(Request::root()."/valida/". $entradasEvento->id ) ) !!}" />
+            <img src="data:image/png;base64, {!! base64_encode(QrCode::size(150)->generate(Request::root()."/valida/". $entradasEvento->id ) ) !!}" />
         </td>
         <td style="padding:20px; text-top;">
              <strong> {{ strtoupper($entradasEvento->evento->titulo) }} </strong>
