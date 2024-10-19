@@ -95,27 +95,6 @@ class ComprarEventoController extends Controller
             'status_detail'=>'pending']);
            
 
-
-    //     $entradasevento = EntradasEvento::where('evento_id', $evento->id)
-    //     ->where('user_id', $user_id)->get();
-
-    //    if($entradasevento->count()>0 )
-    //     {
-    //         return Redirect::route('ComprarEventos.index')->with('error', 'Usted ya cuenta con una entrada.');
-    //     }
-    //    else{
-    //     EntradasEvento::create([
-    //         'estado'=>1, 
-    //         'evento_id' => $evento->id, 
-    //         'user_id' => $user->id, 
-    //         'fecha_compra' => now()->format('Y-m-d')
-    //     ]);
-    //     return Redirect::route('ComprarEventos.index')->with('success', 'Entrada comprada.');
-
-/**
- * Requires libcurl
- */
-       
         $curl = curl_init();
 
         $payload = array(
@@ -147,14 +126,18 @@ class ComprarEventoController extends Controller
         
         curl_close($curl);
         
-        if ($error) {
-        echo "cURL Error #:" . $error;
-        } else {
-        echo $response;
+        if ($error) 
+        {
+            echo "cURL Error #:" . $error;
+            return ($response."Error : ".$error);
+        } 
+        else 
+        {
+            echo $response;
 
-        $json = json_decode($response);
+            $json = json_decode($response);
 
-        Transaccione::where('id',$transaccion->id)->update([
+            Transaccione::where('id',$transaccion->id)->update([
             'payment_id'=>$json->payment_id, 
             // 'evento_id' => $evento->id, 
             // 'user_id' => $user->id, 
@@ -164,7 +147,7 @@ class ComprarEventoController extends Controller
             return Redirect($json->payment_url);
         }
        
-       return ($response."Error : ".$error);
+       
     }
    
 

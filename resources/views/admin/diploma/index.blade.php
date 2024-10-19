@@ -53,7 +53,7 @@
 
                                             <td>
                                                 <form action="{{ route('diplomas.destroy', $diploma->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="/{{ $diploma->fondo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
+                                                    <a class="btn btn-sm btn-primary " href="/storage/{{ $diploma->fondo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('diplomas.edit', $diploma->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
