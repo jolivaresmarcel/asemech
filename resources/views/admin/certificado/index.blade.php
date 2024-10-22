@@ -70,7 +70,7 @@
 										
                                             <td>
                                                 <form action="{{ route('certificados.destroy', $certificado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="/{{ $certificado->archivo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
+                                                    <a class="btn btn-sm btn-primary " href="/storage/{{ $certificado->archivo }}"><i class="fa fa-fw fa-eye"></i> Descargar</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('certificados.edit', $certificado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
