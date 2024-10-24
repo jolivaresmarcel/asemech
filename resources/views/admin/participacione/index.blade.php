@@ -32,7 +32,7 @@
 
                     <div class="card-body bg-white">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover" id="table">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -75,4 +75,39 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+@endsection
+
+
+@section('js')
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+<script>
+    $(document).ready( function () {
+    $('#table').DataTable({
+        "language":{
+            "search":           "Buscar",
+            "lengthMenu":       "Mostrar _MENU_ registros por página",
+            "info":             "Mostrar página _PAGE_ de _PAGES_",
+            "infoEmpty":        "Sin registros que mostar",
+            "emptyTable":       "No hay registros",
+            "loadingRecords":   "Cargando...",
+            "paginate":     {
+                                "previous":     "Anterior",
+                                "next":         "Siguente",
+                                "first":        "Primero",
+                                "last":         "Último"
+
+            }
+       
+            
+        }
+
+
+    });
+} );
+</script>
 @endsection

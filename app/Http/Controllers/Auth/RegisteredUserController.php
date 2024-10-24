@@ -34,9 +34,9 @@ class RegisteredUserController extends Controller
               'paterno' => ['required', 'string', 'max:50'],
               'materno' => ['required', 'string', 'max:50'],
               'rut' => ['required', 'string', 'max:10', 'unique:'.User::class], 
-              'telefono' => ['required', 'integer'],
+              'telefono' => ['required', 'integer', 'max:9'],
               'universidad' => ['required', 'string', 'max:100'],
-              'anio' => ['required', 'integer'],
+              'anio' => ['required', 'integer', 'max:2'],
               'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
               'password' => ['required', 'confirmed', Rules\Password::defaults()],
            ]);
