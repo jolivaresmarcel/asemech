@@ -30,7 +30,7 @@ class Diploma extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['evento_id', 'fondo', 'descripcion', 'es_borrable'];
+    protected $fillable = ['evento_id', 'fondo', 'descripcion', 'es_borrable', 'parrafo_1', 'parrafo_2'];
 
 
     /**

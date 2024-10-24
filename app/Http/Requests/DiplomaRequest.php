@@ -23,7 +23,9 @@ class DiplomaRequest extends FormRequest
     {
         return [
 			'evento_id' => 'required',
-			'descripcion' => 'required',			
+			'descripcion' => 'required',
+            'parrafo_1' =>['required','max:500'], 
+            'parrafo_2' =>['required','max:500']
         ];
     }
 }

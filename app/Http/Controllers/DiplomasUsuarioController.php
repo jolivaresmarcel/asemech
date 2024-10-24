@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 
 class DiplomasUsuarioController extends Controller
 {
@@ -106,9 +107,17 @@ class DiplomasUsuarioController extends Controller
         $diplomasUsuario = DiplomasUsuario::find($id);
         $diploma = Diploma::find($diplomasUsuario->diploma_id);
 
+        //$parrafo2=Str::replace('{{rut}}',$diplomasUsuario->user->rut, $diploma->parrafo_2);
+        $parrafo_2=Str::replace('{{rut}}',$diplomasUsuario->user->rut, $diploma->parrafo_2);
+        $parrafo_2=Str::replace('{{nota}}',$diplomasUsuario->nota, $parrafo_2);
+        $parrafo_2=Str::replace('{{asistencia}}',$diplomasUsuario->asistencia, $parrafo_2);
+        $parrafo_2=Str::replace('{{evento}}',$diplomasUsuario->evento->titulo, $parrafo_2);
+
+        $diplomasUsuario->diploma->parrafo_2=$parrafo_2;
+
         $pdf = Pdf::loadView('admin.diploma.diploma', compact('diploma', 'diplomasUsuario'));
         $pdf->set_paper ('a4','landscape');
-        return $pdf->stream('entrada.pdf');
+        return $pdf->stream('diploma.pdf');
 
     }
 

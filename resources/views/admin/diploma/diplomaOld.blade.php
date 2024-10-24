@@ -115,24 +115,19 @@ ul {
 
     <div id="pagina">
       <p>
-       {!!$diplomasUsuario->diploma->parrafo_1!!}
+        La <strong>Asociación de Estudiantes de Medicina de Chile (ASEMECH) </strong> complace de otorgar el siguiente certificado en calidad de <strong> "ASISTENTE APROBADO"</strong> a:
 
       </p>
 
       <h1>{{$diplomasUsuario->user->name}}</h1>
-
-
-      <p>
-        {!! nl2br($diplomasUsuario->diploma->parrafo_2) !!}
-      </p>
      
-{{--   
+  
       <p>Con RUT: {{$diplomasUsuario->user->rut}}, durante la actividad <strong>"{{strtoupper($diplomasUsuario->evento->titulo)}}" </strong>, 
         realizada los días 28, 29, 30 de Octubre del 2024, donde aprueba con nota <strong>{{$diplomasUsuario->nota}} </strong>  en escala de 1 a 7 y con porcentaje de asistencia del <strong>{{$diplomasUsuario->asistencia}}%</strong>,  
         <br><br>
         Esta actividad contó con 25 horas académicas, es independiente de la malla oficial de cualquier casa de estudio y no es requisito de titulación. 
       </p>
-   --}}
+  
 
       {{-- <img id="firma" src="img/logo.png"> 
     --}}

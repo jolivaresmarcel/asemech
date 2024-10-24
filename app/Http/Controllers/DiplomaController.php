@@ -57,8 +57,9 @@ class DiplomaController extends Controller
         [
             'evento_id'=>$request->evento_id,
             'fondo'=>$file,
-            'descripcion'=>$request->descripcion
-        ]
+            'descripcion'=>$request->descripcion,
+            'parrafo_1'=>$request->parrafo_1,
+            'parrafo_2'=>$request->parrafo_2        ]
         );
 
         return Redirect::route('diplomas.index')

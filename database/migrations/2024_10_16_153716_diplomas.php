@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id('id')->primary();
             $table->foreignId('evento_id')->constrained('eventos')->cascadeOnUpdate();  
             $table->binary('fondo')->nullable();
-            $table->longText('descripcion');               
+            $table->longText('descripcion');
+            $table->longText('parrafo_1')->nullable();;
+            $table->longText('parrafo_2')->nullable();                   
             $table->integer('es_borrable')->default(0);      
             $table->timestamps();
         });
